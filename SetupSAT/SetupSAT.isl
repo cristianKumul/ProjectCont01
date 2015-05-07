@@ -2657,7 +2657,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>LCConsultores</td><td>0</td><td/><td>312683746</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>LCConsultores</td><td>0</td><td/><td>983802513</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>312720449</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADER9FOLDER</td><td>1033</td><td>Adobe Reader 9 needs to be installed for this installation to continue.</td><td>0</td><td/><td>312720609</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>312720449</td></row>
@@ -3764,8 +3764,8 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>312720449</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>312720449</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>312722497</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://www.LCConsultores.com</td><td>0</td><td/><td>312683746</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>LCConsultores</td><td>0</td><td/><td>312683746</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.LCConsultores.com</td><td>0</td><td/><td>983802513</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>LCConsultores</td><td>0</td><td/><td>983802513</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td/><td>0</td><td/><td>312733185</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>312728162</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>312711970</td></row>
@@ -4015,7 +4015,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{A92F9EED-49C9-40AF-A8CD-526431470EB6}</td></row>
 		<row><td>ISUSSignature</td><td>{EC5006D0-33DC-48F2-994C-6A7B333BB48F}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewRealSetupDesign,viewShortcuts,viewProject</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewRealSetupDesign,viewShortcuts,viewProject,viewSetupDesign,viewFeatureFiles,viewAppFiles</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4554,9 +4554,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>_Built</td><td>satmasivo_xml</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>SAT.Primary_output1</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built_A596E5869EEB4199AAD249AC76BA53A8.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>SAT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built1_BF2AB8971EB5436B9B93B3080C576874.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built2</td><td>StartupFolder</td><td>##ID_STRING9##</td><td>SAT.Primary_output1</td><td>AlwaysInstall</td><td/><td/><td/><td>_Built2_4DBE98B249474475A45F8A61B9958AE1.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built</td><td>satmasivo_xml</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>SAT.Primary_output1</td><td>AlwaysInstall</td><td/><td/><td/><td/><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>SAT.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built2</td><td>StartupFolder</td><td>##ID_STRING9##</td><td>SAT.Primary_output1</td><td>AlwaysInstall</td><td/><td/><td/><td/><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

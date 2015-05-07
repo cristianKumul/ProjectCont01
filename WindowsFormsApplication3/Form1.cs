@@ -663,6 +663,57 @@ namespace WindowsFormsApplication3
 
         }
 
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+           ConfDataBase form = new ConfDataBase();
+
+           form.Show();
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+           FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
+           // openFileDialog1.Filter = "XML Files|*.xml";
+           // openFileDialog1.Title = "Seleccionar archivo XML";
+           string path = "";
+           // Show the Dialog.
+           // If the user clicked OK in the dialog and
+           // a .CUR file was selected, open it.
+           if (openFileDialog1.ShowDialog() == DialogResult.OK)
+           {
+              path = openFileDialog1.SelectedPath;
+              pathIngresostxt.Text = path;
+              //textBox2.Text = path;
+              //MessageBox.Show(openFileDialog1.SelectedPath);
+           }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+           FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
+           // openFileDialog1.Filter = "XML Files|*.xml";
+           // openFileDialog1.Title = "Seleccionar archivo XML";
+           string path = "";
+           // Show the Dialog.
+           // If the user clicked OK in the dialog and
+           // a .CUR file was selected, open it.
+           if (openFileDialog1.ShowDialog() == DialogResult.OK)
+           {
+              
+              path = openFileDialog1.SelectedPath;
+              pathEgresostxt.Text = path;
+              
+              //textBox2.Text = path;
+              //MessageBox.Show(openFileDialog1.SelectedPath);
+           }
+        }
+
        
 
       

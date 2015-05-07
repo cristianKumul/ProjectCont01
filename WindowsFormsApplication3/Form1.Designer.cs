@@ -30,7 +30,6 @@
         {
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
          this.tabPage1 = new System.Windows.Forms.TabPage();
-         this.webBrowser1 = new System.Windows.Forms.WebBrowser();
          this.toolStrip1 = new System.Windows.Forms.ToolStrip();
          this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
          this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -55,6 +54,18 @@
          this.textBox1 = new System.Windows.Forms.TextBox();
          this.button1 = new System.Windows.Forms.Button();
          this.tabControl1 = new System.Windows.Forms.TabControl();
+         this.tabPage3 = new System.Windows.Forms.TabPage();
+         this.button7 = new System.Windows.Forms.Button();
+         this.groupBox4 = new System.Windows.Forms.GroupBox();
+         this.button8 = new System.Windows.Forms.Button();
+         this.pathIngresostxt = new System.Windows.Forms.TextBox();
+         this.button9 = new System.Windows.Forms.Button();
+         this.groupBox5 = new System.Windows.Forms.GroupBox();
+         this.button10 = new System.Windows.Forms.Button();
+         this.pathEgresostxt = new System.Windows.Forms.TextBox();
+         this.button11 = new System.Windows.Forms.Button();
+         this.progressBar2 = new System.Windows.Forms.ProgressBar();
+         this.webBrowser1 = new System.Windows.Forms.WebBrowser();
          this.tabPage1.SuspendLayout();
          this.toolStrip1.SuspendLayout();
          this.tabPage2.SuspendLayout();
@@ -62,6 +73,9 @@
          this.groupBox2.SuspendLayout();
          this.groupBox1.SuspendLayout();
          this.tabControl1.SuspendLayout();
+         this.tabPage3.SuspendLayout();
+         this.groupBox4.SuspendLayout();
+         this.groupBox5.SuspendLayout();
          this.SuspendLayout();
          // 
          // tabPage1
@@ -76,18 +90,6 @@
          this.tabPage1.Text = "XML SAT";
          this.tabPage1.UseVisualStyleBackColor = true;
          this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click_1);
-         // 
-         // webBrowser1
-         // 
-         this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-         this.webBrowser1.Location = new System.Drawing.Point(1, 34);
-         this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-         this.webBrowser1.Name = "webBrowser1";
-         this.webBrowser1.Size = new System.Drawing.Size(948, 468);
-         this.webBrowser1.TabIndex = 5;
-         this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted_1);
          // 
          // toolStrip1
          // 
@@ -319,11 +321,132 @@
          // 
          this.tabControl1.Controls.Add(this.tabPage1);
          this.tabControl1.Controls.Add(this.tabPage2);
+         this.tabControl1.Controls.Add(this.tabPage3);
          this.tabControl1.Location = new System.Drawing.Point(0, 1);
          this.tabControl1.Name = "tabControl1";
          this.tabControl1.SelectedIndex = 0;
          this.tabControl1.Size = new System.Drawing.Size(959, 530);
          this.tabControl1.TabIndex = 0;
+         // 
+         // tabPage3
+         // 
+         this.tabPage3.Controls.Add(this.progressBar2);
+         this.tabPage3.Controls.Add(this.groupBox5);
+         this.tabPage3.Controls.Add(this.groupBox4);
+         this.tabPage3.Controls.Add(this.button7);
+         this.tabPage3.Location = new System.Drawing.Point(4, 22);
+         this.tabPage3.Name = "tabPage3";
+         this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+         this.tabPage3.Size = new System.Drawing.Size(951, 504);
+         this.tabPage3.TabIndex = 2;
+         this.tabPage3.Text = "SIS - XML";
+         this.tabPage3.UseVisualStyleBackColor = true;
+         this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+         // 
+         // button7
+         // 
+         this.button7.Location = new System.Drawing.Point(853, 16);
+         this.button7.Name = "button7";
+         this.button7.Size = new System.Drawing.Size(75, 23);
+         this.button7.TabIndex = 0;
+         this.button7.Text = "Configurar";
+         this.button7.UseVisualStyleBackColor = true;
+         this.button7.Click += new System.EventHandler(this.button7_Click_1);
+         // 
+         // groupBox4
+         // 
+         this.groupBox4.Controls.Add(this.button8);
+         this.groupBox4.Controls.Add(this.pathIngresostxt);
+         this.groupBox4.Controls.Add(this.button9);
+         this.groupBox4.Location = new System.Drawing.Point(32, 31);
+         this.groupBox4.Name = "groupBox4";
+         this.groupBox4.Size = new System.Drawing.Size(683, 119);
+         this.groupBox4.TabIndex = 4;
+         this.groupBox4.TabStop = false;
+         this.groupBox4.Text = "Capturar Ingresos";
+         // 
+         // button8
+         // 
+         this.button8.Location = new System.Drawing.Point(380, 85);
+         this.button8.Name = "button8";
+         this.button8.Size = new System.Drawing.Size(75, 23);
+         this.button8.TabIndex = 3;
+         this.button8.Text = "Capturar";
+         this.button8.UseVisualStyleBackColor = true;
+         // 
+         // pathIngresostxt
+         // 
+         this.pathIngresostxt.Location = new System.Drawing.Point(120, 43);
+         this.pathIngresostxt.Name = "pathIngresostxt";
+         this.pathIngresostxt.Size = new System.Drawing.Size(318, 20);
+         this.pathIngresostxt.TabIndex = 2;
+         // 
+         // button9
+         // 
+         this.button9.Location = new System.Drawing.Point(20, 40);
+         this.button9.Name = "button9";
+         this.button9.Size = new System.Drawing.Size(75, 23);
+         this.button9.TabIndex = 1;
+         this.button9.Text = "Carpeta";
+         this.button9.UseVisualStyleBackColor = true;
+         this.button9.Click += new System.EventHandler(this.button9_Click);
+         // 
+         // groupBox5
+         // 
+         this.groupBox5.Controls.Add(this.button10);
+         this.groupBox5.Controls.Add(this.pathEgresostxt);
+         this.groupBox5.Controls.Add(this.button11);
+         this.groupBox5.Location = new System.Drawing.Point(32, 191);
+         this.groupBox5.Name = "groupBox5";
+         this.groupBox5.Size = new System.Drawing.Size(683, 119);
+         this.groupBox5.TabIndex = 5;
+         this.groupBox5.TabStop = false;
+         this.groupBox5.Text = "Capturar Egresos";
+         // 
+         // button10
+         // 
+         this.button10.Location = new System.Drawing.Point(380, 85);
+         this.button10.Name = "button10";
+         this.button10.Size = new System.Drawing.Size(75, 23);
+         this.button10.TabIndex = 3;
+         this.button10.Text = "Capturar";
+         this.button10.UseVisualStyleBackColor = true;
+         // 
+         // pathEgresostxt
+         // 
+         this.pathEgresostxt.Location = new System.Drawing.Point(120, 43);
+         this.pathEgresostxt.Name = "pathEgresostxt";
+         this.pathEgresostxt.Size = new System.Drawing.Size(318, 20);
+         this.pathEgresostxt.TabIndex = 2;
+         // 
+         // button11
+         // 
+         this.button11.Location = new System.Drawing.Point(20, 40);
+         this.button11.Name = "button11";
+         this.button11.Size = new System.Drawing.Size(75, 23);
+         this.button11.TabIndex = 1;
+         this.button11.Text = "Carpeta";
+         this.button11.UseVisualStyleBackColor = true;
+         this.button11.Click += new System.EventHandler(this.button11_Click);
+         // 
+         // progressBar2
+         // 
+         this.progressBar2.Location = new System.Drawing.Point(6, 475);
+         this.progressBar2.Name = "progressBar2";
+         this.progressBar2.Size = new System.Drawing.Size(937, 23);
+         this.progressBar2.TabIndex = 6;
+         // 
+         // webBrowser1
+         // 
+         this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+         this.webBrowser1.Location = new System.Drawing.Point(1, 34);
+         this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+         this.webBrowser1.Name = "webBrowser1";
+         this.webBrowser1.Size = new System.Drawing.Size(948, 468);
+         this.webBrowser1.TabIndex = 5;
+         this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted_1);
          // 
          // Main
          // 
@@ -347,6 +470,11 @@
          this.groupBox1.ResumeLayout(false);
          this.groupBox1.PerformLayout();
          this.tabControl1.ResumeLayout(false);
+         this.tabPage3.ResumeLayout(false);
+         this.groupBox4.ResumeLayout(false);
+         this.groupBox4.PerformLayout();
+         this.groupBox5.ResumeLayout(false);
+         this.groupBox5.PerformLayout();
          this.ResumeLayout(false);
 
         }
@@ -379,6 +507,17 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox pathIngresostxt;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TextBox pathEgresostxt;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.ProgressBar progressBar2;
 
 
 

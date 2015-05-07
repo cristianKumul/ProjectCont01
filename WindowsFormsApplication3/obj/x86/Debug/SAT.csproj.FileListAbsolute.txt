@@ -35,3 +35,23 @@ C:\Users\jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bi
 C:\Users\jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bin\Debug\WindowsFormsApplication3.pdb
 C:\Users\jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.exe.manifest
 C:\Users\jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.application
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\Interop.SHDocVw.dll
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\SAT.csproj.ResolveComReference.cache
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.exe
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.pdb
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bin\Debug\WindowsFormsApplication3.exe.manifest
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bin\Debug\WindowsFormsApplication3.application
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bin\Debug\WindowsFormsApplication3.exe
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bin\Debug\WindowsFormsApplication3.pdb
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\SAT.csprojResolveAssemblyReference.cache
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.Excelrpt.resources
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.FacturaRpt.resources
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.Main.resources
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.Properties.Resources.resources
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\SAT.csproj.GenerateResource.Cache
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\RdlCompile.cache
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\RdlCompile.compiled
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.exe.manifest
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.application
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bin\Debug\WindowsFormsApplication3.exe.config
+C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.ConfDataBase.resources
