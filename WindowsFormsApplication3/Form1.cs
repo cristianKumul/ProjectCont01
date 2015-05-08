@@ -10,6 +10,8 @@ using System.Net; //webclient
 //using HtmlAgilityPack;
 using System.IO;
 using Microsoft.Reporting.WinForms;
+using System.Configuration;
+using System.Data.SqlClient;
 
 
 
@@ -22,9 +24,16 @@ namespace WindowsFormsApplication3
 {
     public partial class Main : Form
     {
+       class Variables
+       {
+          public static string  connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
+          //MessageBox.Show(connStr);
+          public static SqlConnection conn = new SqlConnection(connStr);
+       }
         public Main()
         {
             InitializeComponent();
+           
         }
         private SHDocVw.WebBrowser_V1 Web_V1;
         public void InlinePopups(WebBrowser browser)
@@ -712,6 +721,59 @@ namespace WindowsFormsApplication3
               //textBox2.Text = path;
               //MessageBox.Show(openFileDialog1.SelectedPath);
            }
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+           /*Variables de la conexion a la base de datos*/
+           string  connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
+           SqlConnection conn = new SqlConnection(connStr);
+
+           try
+           {
+              using (SqlConnection con = conn)
+              {
+                 con.Open();
+              }
+
+           }
+           catch
+           {
+              MessageBox.Show("Error en la conexión a la base de datos");
+           }
+           /*--------------------------------------------*/
+           try
+           {
+              DirectoryInfo di = new DirectoryInfo(pathIngresostxt.Text);
+              FileInfo[] files = di.GetFiles("*.xml");
+              progressBar2.Maximum = files.Count();
+
+
+              /*
+              foreach (FileInfo filetmp in files)
+              {
+                 string file = filetmp.ToString();
+                 xmlClass xmlTool = new xmlClass();
+                 Factura factura = xmlTool.getXMLValues(filetmp.FullName);
+                 MessageBox.Show(factura.RFCReceptor);
+
+                 //List<Factura> datoFactura = new List<Factura>();
+                 //datoFactura.Add(factura)
+                 progressBar2.Value += 1;
+              }
+             */
+              MessageBox.Show("Se capturaron " + progressBar2.Maximum + " registros de Ingresos ");
+              progressBar1.Value = 0;
+           }
+           catch
+           {
+              MessageBox.Show("Error al abrir la carpeta seleccionada o no se ha seleccionado alguna");
+           }
+        }
+
+        private void insertEgresos_Click(object sender, EventArgs e)
+        {
+
         }
 
        

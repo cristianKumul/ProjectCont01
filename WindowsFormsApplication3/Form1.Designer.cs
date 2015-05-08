@@ -57,11 +57,11 @@
          this.tabPage3 = new System.Windows.Forms.TabPage();
          this.button7 = new System.Windows.Forms.Button();
          this.groupBox4 = new System.Windows.Forms.GroupBox();
-         this.button8 = new System.Windows.Forms.Button();
+         this.insertIngresos = new System.Windows.Forms.Button();
          this.pathIngresostxt = new System.Windows.Forms.TextBox();
          this.button9 = new System.Windows.Forms.Button();
          this.groupBox5 = new System.Windows.Forms.GroupBox();
-         this.button10 = new System.Windows.Forms.Button();
+         this.insertEgresos = new System.Windows.Forms.Button();
          this.pathEgresostxt = new System.Windows.Forms.TextBox();
          this.button11 = new System.Windows.Forms.Button();
          this.progressBar2 = new System.Windows.Forms.ProgressBar();
@@ -355,7 +355,7 @@
          // 
          // groupBox4
          // 
-         this.groupBox4.Controls.Add(this.button8);
+         this.groupBox4.Controls.Add(this.insertIngresos);
          this.groupBox4.Controls.Add(this.pathIngresostxt);
          this.groupBox4.Controls.Add(this.button9);
          this.groupBox4.Location = new System.Drawing.Point(32, 31);
@@ -365,14 +365,15 @@
          this.groupBox4.TabStop = false;
          this.groupBox4.Text = "Capturar Ingresos";
          // 
-         // button8
+         // insertIngresos
          // 
-         this.button8.Location = new System.Drawing.Point(380, 85);
-         this.button8.Name = "button8";
-         this.button8.Size = new System.Drawing.Size(75, 23);
-         this.button8.TabIndex = 3;
-         this.button8.Text = "Capturar";
-         this.button8.UseVisualStyleBackColor = true;
+         this.insertIngresos.Location = new System.Drawing.Point(380, 85);
+         this.insertIngresos.Name = "insertIngresos";
+         this.insertIngresos.Size = new System.Drawing.Size(75, 23);
+         this.insertIngresos.TabIndex = 3;
+         this.insertIngresos.Text = "Capturar";
+         this.insertIngresos.UseVisualStyleBackColor = true;
+         this.insertIngresos.Click += new System.EventHandler(this.button8_Click_1);
          // 
          // pathIngresostxt
          // 
@@ -393,7 +394,7 @@
          // 
          // groupBox5
          // 
-         this.groupBox5.Controls.Add(this.button10);
+         this.groupBox5.Controls.Add(this.insertEgresos);
          this.groupBox5.Controls.Add(this.pathEgresostxt);
          this.groupBox5.Controls.Add(this.button11);
          this.groupBox5.Location = new System.Drawing.Point(32, 191);
@@ -403,14 +404,15 @@
          this.groupBox5.TabStop = false;
          this.groupBox5.Text = "Capturar Egresos";
          // 
-         // button10
+         // insertEgresos
          // 
-         this.button10.Location = new System.Drawing.Point(380, 85);
-         this.button10.Name = "button10";
-         this.button10.Size = new System.Drawing.Size(75, 23);
-         this.button10.TabIndex = 3;
-         this.button10.Text = "Capturar";
-         this.button10.UseVisualStyleBackColor = true;
+         this.insertEgresos.Location = new System.Drawing.Point(380, 85);
+         this.insertEgresos.Name = "insertEgresos";
+         this.insertEgresos.Size = new System.Drawing.Size(75, 23);
+         this.insertEgresos.TabIndex = 3;
+         this.insertEgresos.Text = "Capturar";
+         this.insertEgresos.UseVisualStyleBackColor = true;
+         this.insertEgresos.Click += new System.EventHandler(this.insertEgresos_Click);
          // 
          // pathEgresostxt
          // 
@@ -510,11 +512,11 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button insertIngresos;
         private System.Windows.Forms.TextBox pathIngresostxt;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button insertEgresos;
         private System.Windows.Forms.TextBox pathEgresostxt;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ProgressBar progressBar2;
