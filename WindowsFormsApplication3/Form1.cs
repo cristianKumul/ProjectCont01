@@ -12,7 +12,7 @@ using System.IO;
 using Microsoft.Reporting.WinForms;
 using System.Configuration;
 using System.Data.SqlClient;
-
+using System.Security.Cryptography;
 
 
 
@@ -24,6 +24,11 @@ namespace WindowsFormsApplication3
 {
     public partial class Main : Form
     {
+       public static class LoginUser
+       {
+          public static string UserID;
+
+       }
        class Variables
        {
           public static string  connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
@@ -33,6 +38,7 @@ namespace WindowsFormsApplication3
         public Main()
         {
             InitializeComponent();
+            LoginUser.UserID = "";
            
         }
         private SHDocVw.WebBrowser_V1 Web_V1;
@@ -679,6 +685,13 @@ namespace WindowsFormsApplication3
 
         private void button7_Click_1(object sender, EventArgs e)
         {
+           string foo = "ž“Ÿ¡m£˜¤žjš";
+
+           Cryptografia tool = new Cryptografia();
+
+           string r = tool.Encriptar("malm82",foo,1);
+
+
            ConfDataBase form = new ConfDataBase();
 
            form.Show();
@@ -736,39 +749,55 @@ namespace WindowsFormsApplication3
                  con.Open();
               }
 
+              if (LoginUser.UserID != "")
+              {
+                 MessageBox.Show("Esta logueado");
+                 try
+                 {
+                    DirectoryInfo di = new DirectoryInfo(pathIngresostxt.Text);
+                    FileInfo[] files = di.GetFiles("*.xml");
+                    progressBar2.Maximum = files.Count();
+
+                 }
+                 catch
+                 {
+                    MessageBox.Show("Carpeta NO seleccionada");
+                 }
+                 
+
+                 /*
+                 foreach (FileInfo filetmp in files)
+                 {
+                    string file = filetmp.ToString();
+                    xmlClass xmlTool = new xmlClass();
+                    Factura factura = xmlTool.getXMLValues(filetmp.FullName);
+                    MessageBox.Show(factura.RFCReceptor);
+
+                    //List<Factura> datoFactura = new List<Factura>();
+                    //datoFactura.Add(factura)
+                    progressBar2.Value += 1;
+                 }
+                */
+                 MessageBox.Show("Se capturaron " + progressBar2.Maximum + " registros de Ingresos ");
+                 progressBar1.Value = 0;
+
+
+              }
+              else
+              {
+                 MessageBox.Show("Falta logueo");
+                 Login frmLogin = new Login();
+                 frmLogin.Show();
+
+              }
            }
            catch
            {
               MessageBox.Show("Error en la conexión a la base de datos");
            }
            /*--------------------------------------------*/
-           try
-           {
-              DirectoryInfo di = new DirectoryInfo(pathIngresostxt.Text);
-              FileInfo[] files = di.GetFiles("*.xml");
-              progressBar2.Maximum = files.Count();
-
-
-              /*
-              foreach (FileInfo filetmp in files)
-              {
-                 string file = filetmp.ToString();
-                 xmlClass xmlTool = new xmlClass();
-                 Factura factura = xmlTool.getXMLValues(filetmp.FullName);
-                 MessageBox.Show(factura.RFCReceptor);
-
-                 //List<Factura> datoFactura = new List<Factura>();
-                 //datoFactura.Add(factura)
-                 progressBar2.Value += 1;
-              }
-             */
-              MessageBox.Show("Se capturaron " + progressBar2.Maximum + " registros de Ingresos ");
-              progressBar1.Value = 0;
-           }
-           catch
-           {
-              MessageBox.Show("Error al abrir la carpeta seleccionada o no se ha seleccionado alguna");
-           }
+          
+          
         }
 
         private void insertEgresos_Click(object sender, EventArgs e)
