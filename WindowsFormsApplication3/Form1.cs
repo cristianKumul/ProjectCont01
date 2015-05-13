@@ -689,8 +689,9 @@ namespace WindowsFormsApplication3
 
            Cryptografia tool = new Cryptografia();
 
-           string r = tool.Encriptar("malm82",foo,1);
-
+           string r = tool.Encriptar("malm82","123456781209", 0);
+           string p = tool.Encriptar("malm82", foo, 1);
+           //MessageBox.Show(r);
 
            ConfDataBase form = new ConfDataBase();
 
