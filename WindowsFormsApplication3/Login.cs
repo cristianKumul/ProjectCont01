@@ -13,11 +13,12 @@ namespace WindowsFormsApplication3
 {
    public partial class Login : Form
    {
-      public static class LoginInfo 
-      {
-         public static string userLogged;
+      
+      public string userLogged {get;set;}
+      public bool LoginStatus { get; set; }
 
-      }
+
+      
       public Login()
       {
          InitializeComponent();
@@ -25,6 +26,9 @@ namespace WindowsFormsApplication3
 
       private void Login_Load(object sender, EventArgs e)
       {
+         this.LoginStatus = false;
+         this.userLogged = "NONE";
+
 
       }
 
@@ -32,21 +36,42 @@ namespace WindowsFormsApplication3
       {
          string  connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
          SqlConnection conn = new SqlConnection(connStr);
+         Cryptografia cryp = new Cryptografia();
+         
+         string bd = conn.Database;
+         string test = "SELECT [IdUsuario],[Password] FROM [" + bd + "].[dbo].[Usuarios]  [IdUsuario]='" + userLogin.Text + "' AND [Password]='" + cryp.Encriptar("malm82", passLogin.Text, 0) + "';";
+         //MessageBox.Show(passLogin.Text);
+         //MessageBox.Show(test);   
 
          using (SqlConnection con = conn)
          {
             try
             {
                con.Open();
-               using (SqlCommand command = new SqlCommand("SELECT * FROM [testCoord].[dbo].[transaction];", con))
-               using (SqlDataReader reader = command.ExecuteReader())
-               {
-                  while (reader.Read())
-                  {
-                     MessageBox.Show(reader[0].ToString() + " , " + reader[1].ToString() + " , " + reader[2].ToString());
+               using (SqlCommand command = new SqlCommand("SELECT [IdUsuario],[Password] FROM [" + bd + "].[dbo].[Usuarios]  WHERE   [IdUsuario]='" + userLogin.Text + "' AND [Password]='" + cryp.Encriptar("malm82", passLogin.Text, 0) + "';", con))
 
+                  try
+                  {
+                     using (SqlDataReader reader = command.ExecuteReader())
+                     {
+
+                        while(reader.Read())
+                        {
+                           //MessageBox.Show(reader[0].ToString() + " , " + reader[1].ToString());
+                           this.userLogged = reader[0].ToString();
+                           if (this.userLogged == userLogin.Text)
+                           {
+                              this.LoginStatus = true;
+                           }
+                           break;
+                        }
+
+                     }
                   }
-               }
+                  catch
+                  {
+                     MessageBox.Show("Error en autenticación");
+                  }
 
             }
             catch
@@ -54,7 +79,8 @@ namespace WindowsFormsApplication3
                MessageBox.Show("Error en la conexión a la Base de datos");
             }
          }
-         
+
+         this.Close();
       }
    }
 }

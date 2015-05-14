@@ -31,8 +31,8 @@
          this.loginBtn = new System.Windows.Forms.Button();
          this.userLbl = new System.Windows.Forms.Label();
          this.passwordLbl = new System.Windows.Forms.Label();
-         this.textBox1 = new System.Windows.Forms.TextBox();
-         this.textBox2 = new System.Windows.Forms.TextBox();
+         this.userLogin = new System.Windows.Forms.TextBox();
+         this.passLogin = new System.Windows.Forms.TextBox();
          this.SuspendLayout();
          // 
          // loginBtn
@@ -65,28 +65,28 @@
          this.passwordLbl.Text = "PASSWORD :";
          this.passwordLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
          // 
-         // textBox1
+         // userLogin
          // 
-         this.textBox1.Location = new System.Drawing.Point(110, 42);
-         this.textBox1.Name = "textBox1";
-         this.textBox1.Size = new System.Drawing.Size(136, 20);
-         this.textBox1.TabIndex = 3;
+         this.userLogin.Location = new System.Drawing.Point(110, 42);
+         this.userLogin.Name = "userLogin";
+         this.userLogin.Size = new System.Drawing.Size(136, 20);
+         this.userLogin.TabIndex = 3;
          // 
-         // textBox2
+         // passLogin
          // 
-         this.textBox2.Location = new System.Drawing.Point(110, 90);
-         this.textBox2.Name = "textBox2";
-         this.textBox2.PasswordChar = '*';
-         this.textBox2.Size = new System.Drawing.Size(136, 20);
-         this.textBox2.TabIndex = 4;
+         this.passLogin.Location = new System.Drawing.Point(110, 90);
+         this.passLogin.Name = "passLogin";
+         this.passLogin.PasswordChar = '*';
+         this.passLogin.Size = new System.Drawing.Size(136, 20);
+         this.passLogin.TabIndex = 4;
          // 
          // Login
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(276, 171);
-         this.Controls.Add(this.textBox2);
-         this.Controls.Add(this.textBox1);
+         this.Controls.Add(this.passLogin);
+         this.Controls.Add(this.userLogin);
          this.Controls.Add(this.passwordLbl);
          this.Controls.Add(this.userLbl);
          this.Controls.Add(this.loginBtn);
@@ -103,7 +103,7 @@
       private System.Windows.Forms.Button loginBtn;
       private System.Windows.Forms.Label userLbl;
       private System.Windows.Forms.Label passwordLbl;
-      private System.Windows.Forms.TextBox textBox1;
-      private System.Windows.Forms.TextBox textBox2;
+      private System.Windows.Forms.TextBox userLogin;
+      private System.Windows.Forms.TextBox passLogin;
    }
 }

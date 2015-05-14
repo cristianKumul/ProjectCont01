@@ -55,17 +55,19 @@
          this.button1 = new System.Windows.Forms.Button();
          this.tabControl1 = new System.Windows.Forms.TabControl();
          this.tabPage3 = new System.Windows.Forms.TabPage();
-         this.button7 = new System.Windows.Forms.Button();
-         this.groupBox4 = new System.Windows.Forms.GroupBox();
-         this.insertIngresos = new System.Windows.Forms.Button();
-         this.pathIngresostxt = new System.Windows.Forms.TextBox();
-         this.button9 = new System.Windows.Forms.Button();
+         this.progressBar2 = new System.Windows.Forms.ProgressBar();
          this.groupBox5 = new System.Windows.Forms.GroupBox();
          this.insertEgresos = new System.Windows.Forms.Button();
          this.pathEgresostxt = new System.Windows.Forms.TextBox();
          this.button11 = new System.Windows.Forms.Button();
-         this.progressBar2 = new System.Windows.Forms.ProgressBar();
+         this.groupBox4 = new System.Windows.Forms.GroupBox();
+         this.insertIngresos = new System.Windows.Forms.Button();
+         this.pathIngresostxt = new System.Windows.Forms.TextBox();
+         this.button9 = new System.Windows.Forms.Button();
+         this.button7 = new System.Windows.Forms.Button();
          this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+         this.groupBox6 = new System.Windows.Forms.GroupBox();
+         this.currentUser = new System.Windows.Forms.TextBox();
          this.tabPage1.SuspendLayout();
          this.toolStrip1.SuspendLayout();
          this.tabPage2.SuspendLayout();
@@ -74,8 +76,9 @@
          this.groupBox1.SuspendLayout();
          this.tabControl1.SuspendLayout();
          this.tabPage3.SuspendLayout();
-         this.groupBox4.SuspendLayout();
          this.groupBox5.SuspendLayout();
+         this.groupBox4.SuspendLayout();
+         this.groupBox6.SuspendLayout();
          this.SuspendLayout();
          // 
          // tabPage1
@@ -330,6 +333,7 @@
          // 
          // tabPage3
          // 
+         this.tabPage3.Controls.Add(this.groupBox6);
          this.tabPage3.Controls.Add(this.progressBar2);
          this.tabPage3.Controls.Add(this.groupBox5);
          this.tabPage3.Controls.Add(this.groupBox4);
@@ -343,54 +347,12 @@
          this.tabPage3.UseVisualStyleBackColor = true;
          this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
          // 
-         // button7
+         // progressBar2
          // 
-         this.button7.Location = new System.Drawing.Point(853, 16);
-         this.button7.Name = "button7";
-         this.button7.Size = new System.Drawing.Size(75, 23);
-         this.button7.TabIndex = 0;
-         this.button7.Text = "Configurar";
-         this.button7.UseVisualStyleBackColor = true;
-         this.button7.Click += new System.EventHandler(this.button7_Click_1);
-         // 
-         // groupBox4
-         // 
-         this.groupBox4.Controls.Add(this.insertIngresos);
-         this.groupBox4.Controls.Add(this.pathIngresostxt);
-         this.groupBox4.Controls.Add(this.button9);
-         this.groupBox4.Location = new System.Drawing.Point(32, 31);
-         this.groupBox4.Name = "groupBox4";
-         this.groupBox4.Size = new System.Drawing.Size(683, 119);
-         this.groupBox4.TabIndex = 4;
-         this.groupBox4.TabStop = false;
-         this.groupBox4.Text = "Capturar Ingresos";
-         // 
-         // insertIngresos
-         // 
-         this.insertIngresos.Location = new System.Drawing.Point(380, 85);
-         this.insertIngresos.Name = "insertIngresos";
-         this.insertIngresos.Size = new System.Drawing.Size(75, 23);
-         this.insertIngresos.TabIndex = 3;
-         this.insertIngresos.Text = "Capturar";
-         this.insertIngresos.UseVisualStyleBackColor = true;
-         this.insertIngresos.Click += new System.EventHandler(this.button8_Click_1);
-         // 
-         // pathIngresostxt
-         // 
-         this.pathIngresostxt.Location = new System.Drawing.Point(120, 43);
-         this.pathIngresostxt.Name = "pathIngresostxt";
-         this.pathIngresostxt.Size = new System.Drawing.Size(318, 20);
-         this.pathIngresostxt.TabIndex = 2;
-         // 
-         // button9
-         // 
-         this.button9.Location = new System.Drawing.Point(20, 40);
-         this.button9.Name = "button9";
-         this.button9.Size = new System.Drawing.Size(75, 23);
-         this.button9.TabIndex = 1;
-         this.button9.Text = "Carpeta";
-         this.button9.UseVisualStyleBackColor = true;
-         this.button9.Click += new System.EventHandler(this.button9_Click);
+         this.progressBar2.Location = new System.Drawing.Point(6, 475);
+         this.progressBar2.Name = "progressBar2";
+         this.progressBar2.Size = new System.Drawing.Size(937, 23);
+         this.progressBar2.TabIndex = 6;
          // 
          // groupBox5
          // 
@@ -431,12 +393,54 @@
          this.button11.UseVisualStyleBackColor = true;
          this.button11.Click += new System.EventHandler(this.button11_Click);
          // 
-         // progressBar2
+         // groupBox4
          // 
-         this.progressBar2.Location = new System.Drawing.Point(6, 475);
-         this.progressBar2.Name = "progressBar2";
-         this.progressBar2.Size = new System.Drawing.Size(937, 23);
-         this.progressBar2.TabIndex = 6;
+         this.groupBox4.Controls.Add(this.insertIngresos);
+         this.groupBox4.Controls.Add(this.pathIngresostxt);
+         this.groupBox4.Controls.Add(this.button9);
+         this.groupBox4.Location = new System.Drawing.Point(32, 31);
+         this.groupBox4.Name = "groupBox4";
+         this.groupBox4.Size = new System.Drawing.Size(683, 119);
+         this.groupBox4.TabIndex = 4;
+         this.groupBox4.TabStop = false;
+         this.groupBox4.Text = "Capturar Ingresos";
+         // 
+         // insertIngresos
+         // 
+         this.insertIngresos.Location = new System.Drawing.Point(380, 85);
+         this.insertIngresos.Name = "insertIngresos";
+         this.insertIngresos.Size = new System.Drawing.Size(75, 23);
+         this.insertIngresos.TabIndex = 3;
+         this.insertIngresos.Text = "Capturar";
+         this.insertIngresos.UseVisualStyleBackColor = true;
+         this.insertIngresos.Click += new System.EventHandler(this.button8_Click_1);
+         // 
+         // pathIngresostxt
+         // 
+         this.pathIngresostxt.Location = new System.Drawing.Point(120, 43);
+         this.pathIngresostxt.Name = "pathIngresostxt";
+         this.pathIngresostxt.Size = new System.Drawing.Size(318, 20);
+         this.pathIngresostxt.TabIndex = 2;
+         // 
+         // button9
+         // 
+         this.button9.Location = new System.Drawing.Point(20, 40);
+         this.button9.Name = "button9";
+         this.button9.Size = new System.Drawing.Size(75, 23);
+         this.button9.TabIndex = 1;
+         this.button9.Text = "Carpeta";
+         this.button9.UseVisualStyleBackColor = true;
+         this.button9.Click += new System.EventHandler(this.button9_Click);
+         // 
+         // button7
+         // 
+         this.button7.Location = new System.Drawing.Point(853, 16);
+         this.button7.Name = "button7";
+         this.button7.Size = new System.Drawing.Size(75, 23);
+         this.button7.TabIndex = 0;
+         this.button7.Text = "Configurar";
+         this.button7.UseVisualStyleBackColor = true;
+         this.button7.Click += new System.EventHandler(this.button7_Click_1);
          // 
          // webBrowser1
          // 
@@ -449,6 +453,28 @@
          this.webBrowser1.Size = new System.Drawing.Size(948, 468);
          this.webBrowser1.TabIndex = 5;
          this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted_1);
+         // 
+         // groupBox6
+         // 
+         this.groupBox6.Controls.Add(this.currentUser);
+         this.groupBox6.Location = new System.Drawing.Point(724, 429);
+         this.groupBox6.Name = "groupBox6";
+         this.groupBox6.Size = new System.Drawing.Size(219, 40);
+         this.groupBox6.TabIndex = 9;
+         this.groupBox6.TabStop = false;
+         this.groupBox6.Text = "Login";
+         //this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Click);
+         // 
+         // currentUser
+         // 
+         this.currentUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+         this.currentUser.Enabled = false;
+         this.currentUser.Location = new System.Drawing.Point(43, 19);
+         this.currentUser.Name = "currentUser";
+         this.currentUser.ReadOnly = true;
+         this.currentUser.Size = new System.Drawing.Size(100, 13);
+         this.currentUser.TabIndex = 9;
+         this.currentUser.Text = "Usuario: NONE";
          // 
          // Main
          // 
@@ -473,10 +499,12 @@
          this.groupBox1.PerformLayout();
          this.tabControl1.ResumeLayout(false);
          this.tabPage3.ResumeLayout(false);
-         this.groupBox4.ResumeLayout(false);
-         this.groupBox4.PerformLayout();
          this.groupBox5.ResumeLayout(false);
          this.groupBox5.PerformLayout();
+         this.groupBox4.ResumeLayout(false);
+         this.groupBox4.PerformLayout();
+         this.groupBox6.ResumeLayout(false);
+         this.groupBox6.PerformLayout();
          this.ResumeLayout(false);
 
         }
@@ -520,6 +548,8 @@
         private System.Windows.Forms.TextBox pathEgresostxt;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox currentUser;
 
 
 

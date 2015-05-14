@@ -15,7 +15,8 @@ namespace WindowsFormsApplication3
          List<int> keyList = new List<int>();
          List<int> sourceList = new List<int>();
          Encoding ascii = Encoding.ASCII;
-
+         byte[] b = new byte[1];
+         Encoding cs = Encoding.Default;
          //string[] split = key.Split(null as string[], StringSplitOptions.RemoveEmptyEntries);
          char[] keyArray = key.ToCharArray();
          char[] sourceArray = source.ToCharArray();
@@ -67,8 +68,8 @@ namespace WindowsFormsApplication3
                byte[] _bytearray = BitConverter.GetBytes(158);
                char[] _chararray = Encoding.GetEncoding(437).GetChars(_bytearray);
                char result = _chararray[0];
-               Console.WriteLine(result);
-               output += temp;//System.Text.Encoding.ASCII.GetString(new byte[] { letra });
+               b[0] = (byte)temp;
+               output += string.Format("{0,1}",  cs.GetString(b));
             }
          }
 
@@ -84,8 +85,9 @@ namespace WindowsFormsApplication3
                {
                   temp = temp + 255;
                }
-               
-               output += (char)temp;
+               b[0] = (byte)temp;
+               Console.WriteLine(cs.GetString(b));
+               output += string.Format("{0,1}", cs.GetString(b));
             }
          }
 

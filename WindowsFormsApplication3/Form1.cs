@@ -39,6 +39,8 @@ namespace WindowsFormsApplication3
         {
             InitializeComponent();
             LoginUser.UserID = "";
+            currentUser.Text = " LOGIN " + LoginUser.UserID;
+
            
         }
         private SHDocVw.WebBrowser_V1 Web_V1;
@@ -685,14 +687,8 @@ namespace WindowsFormsApplication3
 
         private void button7_Click_1(object sender, EventArgs e)
         {
-           string foo = "ž“Ÿ¡m£˜¤žjš";
-
-           Cryptografia tool = new Cryptografia();
-
-           string r = tool.Encriptar("malm82","123456781209", 0);
-           string p = tool.Encriptar("malm82", foo, 1);
-           //MessageBox.Show(r);
-
+           
+          
            ConfDataBase form = new ConfDataBase();
 
            form.Show();
@@ -787,8 +783,36 @@ namespace WindowsFormsApplication3
               else
               {
                  MessageBox.Show("Falta logueo");
-                 Login frmLogin = new Login();
-                 frmLogin.Show();
+                 //Login frmLogin = new Login();
+                 //frmLogin.Show();
+
+                 using (var formLogin = new Login())
+                 {
+                    var result = formLogin.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                       if (formLogin.LoginStatus)
+                       {
+                          MessageBox.Show("Bienvenido " + formLogin.userLogged);
+                       }
+
+                    }
+                    else
+                    {
+                       if (formLogin.LoginStatus)
+                       {
+                          MessageBox.Show("Bienvenido " + formLogin.userLogged);
+                          LoginUser.UserID = formLogin.userLogged;
+                          currentUser.Text = LoginUser.UserID;
+                       }
+                       else
+                       {
+                          MessageBox.Show("Usuario NO Encontrado");
+                       }
+
+                    }
+
+                 }
 
               }
            }
@@ -806,6 +830,12 @@ namespace WindowsFormsApplication3
 
         }
 
+       
+
+        
+
+
+       
        
 
       
