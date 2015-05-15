@@ -736,6 +736,7 @@ namespace WindowsFormsApplication3
         private void button8_Click_1(object sender, EventArgs e)
         {
            /*Variables de la conexion a la base de datos*/
+
            string  connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
            SqlConnection conn = new SqlConnection(connStr);
 
@@ -755,6 +756,25 @@ namespace WindowsFormsApplication3
                     FileInfo[] files = di.GetFiles("*.xml");
                     progressBar2.Maximum = files.Count();
 
+                          /*
+                    foreach (FileInfo filetmp in files)
+                    {
+                       string file = filetmp.ToString();
+                       xmlClass xmlTool = new xmlClass();
+                       Factura factura = xmlTool.getXMLValues(filetmp.FullName);
+                       MessageBox.Show(factura.RFCReceptor);
+
+                       //List<Factura> datoFactura = new List<Factura>();
+                       //datoFactura.Add(factura)
+                       progressBar2.Value += 1;
+                    }
+                   */
+                    CapturaSISPrevia foo = new CapturaSISPrevia();
+                    foo.Show();
+
+                     MessageBox.Show("Se capturaron " + progressBar2.Maximum + " registros de Ingresos ");
+                     progressBar1.Value = 0;
+
                  }
                  catch
                  {
@@ -762,21 +782,7 @@ namespace WindowsFormsApplication3
                  }
                  
 
-                 /*
-                 foreach (FileInfo filetmp in files)
-                 {
-                    string file = filetmp.ToString();
-                    xmlClass xmlTool = new xmlClass();
-                    Factura factura = xmlTool.getXMLValues(filetmp.FullName);
-                    MessageBox.Show(factura.RFCReceptor);
-
-                    //List<Factura> datoFactura = new List<Factura>();
-                    //datoFactura.Add(factura)
-                    progressBar2.Value += 1;
-                 }
-                */
-                 MessageBox.Show("Se capturaron " + progressBar2.Maximum + " registros de Ingresos ");
-                 progressBar1.Value = 0;
+              
 
 
               }

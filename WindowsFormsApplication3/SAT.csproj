@@ -84,6 +84,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapturaSISPrevia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapturaSISPrevia.Designer.cs">
+      <DependentUpon>CapturaSISPrevia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,6 +128,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="xmlClass.cs" />
+    <EmbeddedResource Include="CapturaSIS.rdlc" />
+    <EmbeddedResource Include="CapturaSISPrevia.resx">
+      <DependentUpon>CapturaSISPrevia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfDataBase.resx">
       <DependentUpon>ConfDataBase.cs</DependentUpon>
     </EmbeddedResource>
