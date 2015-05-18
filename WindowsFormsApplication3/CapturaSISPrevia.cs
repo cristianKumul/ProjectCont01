@@ -38,6 +38,7 @@ namespace WindowsFormsApplication3
          dt.Columns.Add(new DataColumn("Descuento", typeof(decimal)));
          dt.Columns.Add(new DataColumn("IVA", typeof(decimal)));
          dt.Columns.Add(new DataColumn("Total", typeof(decimal)));
+			dt.Columns.Add(new DataColumn("File", typeof(string)));
 
 
 			
@@ -68,6 +69,7 @@ namespace WindowsFormsApplication3
 				dr["Descuento"] = datosCaptura[i].Descuento;
 				dr["IVA"] = datosCaptura[i].IVA;
 				dr["Total"] = datosCaptura[i].Total;
+				dr["File"] = datosCaptura[i].Archivo;
 				dt.Rows.Add(dr);
 
 			}
@@ -94,8 +96,8 @@ namespace WindowsFormsApplication3
 			
 			
          dataGridView1.DataSource = ds.Tables[0];
-			
-			
+
+			this.dataGridView1.Columns[8].Visible = false;
         // dataGridView1.DataMember = "Prueba de tabla";
 
 
@@ -105,10 +107,28 @@ namespace WindowsFormsApplication3
 
 		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
-			if (e.ColumnIndex == dataGridView1.Columns["verPDF"].Index)
+			if (e.ColumnIndex == dataGridView1.Columns["verPDF"].Index && e.RowIndex >= 0)
 			{
-				//Do Something with your button.
+				
+				MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString());
 				MessageBox.Show(e.RowIndex.ToString());
+				string path = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+				Factura invoice = new Factura();
+			
+				FacturaRpt frm = new FacturaRpt();
+				xmlClass xmlTool = new xmlClass();
+				Factura factura = xmlTool.getXMLValues(path);
+
+
+				frm.Invoice.Add(factura);
+				frm.Detail = factura.Articulos;
+				frm.Traslate = factura.Traslados;
+				//
+				//Enviamos el detalle de la Factura, como Detail es una lista e invoide.Details tambien
+				//es un lista del tipo EArticulo bastara con igualarla
+				//
+
+				frm.Show();
 			}
 		}
    }

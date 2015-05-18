@@ -786,6 +786,7 @@ namespace WindowsFormsApplication3
 								factura = xmlTool.getXMLValues(filetmp.FullName);
 								egreso = xmlTool.Factura2Egreso(factura);
 								egreso.IdUsuarioReg = LoginUser.UserID;
+								egreso.Archivo = filetmp.FullName;
 								datosEgresos.Add(egreso);
 
 
