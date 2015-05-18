@@ -534,6 +534,8 @@ namespace WindowsFormsApplication3
 				}
 				egreso.Descripcion = descripcion;
 				egreso.Clasificacion = "BIENES";
+            egreso.Receptor = factura.RFCReceptor;
+            egreso.Emisor = factura.RFCEmisor;
 				try
 				{
 					egreso.Descuento = decimal.Parse(factura.Descuento);

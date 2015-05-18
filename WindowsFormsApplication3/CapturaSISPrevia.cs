@@ -33,6 +33,8 @@ namespace WindowsFormsApplication3
 
          DataTable dt = new DataTable("Captura");
          dt.Columns.Add(new DataColumn("Select", typeof(System.Boolean)));
+         dt.Columns.Add(new DataColumn("Emisor", typeof(string)));
+         dt.Columns.Add(new DataColumn("Receptor", typeof(string)));
          dt.Columns.Add(new DataColumn("Factura", typeof(string)));
          dt.Columns.Add(new DataColumn("Descripción", typeof(string)));
          dt.Columns.Add(new DataColumn("Importe", typeof(decimal)));
@@ -40,6 +42,8 @@ namespace WindowsFormsApplication3
          dt.Columns.Add(new DataColumn("IVA", typeof(decimal)));
          dt.Columns.Add(new DataColumn("Total", typeof(decimal)));
 			dt.Columns.Add(new DataColumn("File", typeof(string)));
+         dt.Columns.Add(new DataColumn("BaseDatos", typeof(string)));
+         dt.Columns.Add(new DataColumn("ID", typeof(int)));
 
 
 			
@@ -72,6 +76,9 @@ namespace WindowsFormsApplication3
 				dr["IVA"] = datosCaptura[i].IVA;
 				dr["Total"] = datosCaptura[i].Total;
 				dr["File"] = datosCaptura[i].Archivo;
+            dr["ID"] = i;
+            dr["Emisor"] = datosCaptura[i].Emisor;
+            dr["Receptor"] = datosCaptura[i].Receptor;
 				dt.Rows.Add(dr);
 
 			}
@@ -99,7 +106,8 @@ namespace WindowsFormsApplication3
 			
          dataGridView1.DataSource = ds.Tables[0];
 
-			this.dataGridView1.Columns[8].Visible = false;
+			this.dataGridView1.Columns[10].Visible = false;
+         this.dataGridView1.Columns[12].Visible = false;
          //dataGridView1.Columns[0].SortMode = DataGridViewColumnSortMode.Programmatic;
          for (int i = 1; i < 8 ; i++)
          {
@@ -120,10 +128,10 @@ namespace WindowsFormsApplication3
 			if (e.ColumnIndex == dataGridView1.Columns["verPDF"].Index && e.RowIndex >= 0)
 			{
 				
-				MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString());
+				MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString());
             dataGridView1.Rows[e.RowIndex].Cells[0].Value = true;
 				MessageBox.Show(e.RowIndex.ToString());
-				string path = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+				string path = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
 				Factura invoice = new Factura();
 			
 				FacturaRpt frm = new FacturaRpt();

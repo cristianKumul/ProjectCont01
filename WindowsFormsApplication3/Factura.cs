@@ -81,6 +81,9 @@ namespace WindowsFormsApplication3
 		 public string IdUsuarioReg { get; set; }
 		 public string FechaReg { get; set; }
 		 public string Archivo { get; set; }
+       public string Emisor { get; set; }
+       public string Receptor { get; set; }
+
 
 	 }
 		public class IngresoItem
@@ -99,6 +102,9 @@ namespace WindowsFormsApplication3
 		 public string FechaReg { get; set; }
 		 public float PorRetIVA = 66.7F;
 		 public string Archivo { get; set; }
+       public string Emisor { get; set; }
+       public string Receptor { get; set; }
+
 
 	 }
     public class ListExcel
