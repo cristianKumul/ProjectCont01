@@ -32,6 +32,7 @@ namespace WindowsFormsApplication3
          DataSet ds = new DataSet();
 
          DataTable dt = new DataTable("Captura");
+         dt.Columns.Add(new DataColumn("Select", typeof(System.Boolean)));
          dt.Columns.Add(new DataColumn("Factura", typeof(string)));
          dt.Columns.Add(new DataColumn("Descripción", typeof(string)));
          dt.Columns.Add(new DataColumn("Importe", typeof(decimal)));
@@ -43,12 +44,13 @@ namespace WindowsFormsApplication3
 
 			
 
-
+         /*
 			DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
 			chk.HeaderText = "Aprobación";
 			chk.Name = "chk";
+         chk.SortMode = DataGridViewColumnSortMode.Automatic;
 			dataGridView1.Columns.Add(chk);
-
+         */
 			DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
 			btn.HeaderText = "Abrir PDF";
 			btn.Name = "VerPDF";
@@ -98,8 +100,16 @@ namespace WindowsFormsApplication3
          dataGridView1.DataSource = ds.Tables[0];
 
 			this.dataGridView1.Columns[8].Visible = false;
+         //dataGridView1.Columns[0].SortMode = DataGridViewColumnSortMode.Programmatic;
+         for (int i = 1; i < 8 ; i++)
+         {
+           
+            dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
+         }
         // dataGridView1.DataMember = "Prueba de tabla";
-
+         dataGridView1.AllowUserToAddRows = false;
+         dataGridView1.AllowUserToDeleteRows = false;
+         dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
          
        
@@ -111,6 +121,7 @@ namespace WindowsFormsApplication3
 			{
 				
 				MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString());
+            dataGridView1.Rows[e.RowIndex].Cells[0].Value = true;
 				MessageBox.Show(e.RowIndex.ToString());
 				string path = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
 				Factura invoice = new Factura();
@@ -130,6 +141,15 @@ namespace WindowsFormsApplication3
 
 				frm.Show();
 			}
+
+        /* if (e.ColumnIndex == dataGridView1.Columns["Select"].Index)
+         {
+            dataGridView1.EndEdit();  //Stop editing of cell.
+            if ((bool)dataGridView1.Rows[e.RowIndex].Cells["Select"].Value)
+               MessageBox.Show("The Value is Checked", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+               //MessageBox.Show("UnChecked", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+         }*/
 		}
    }
 }
