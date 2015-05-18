@@ -57,3 +57,7 @@ C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\
 C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.ConfDataBase.resources
 C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.Login.resources
 C:\Users\cristian.kumul\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.CapturaSISPrevia.resources
+C:\Users\Jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\bin\Debug\WindowsFormsApplication3.exe.config
+C:\Users\Jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.CapturaSISPrevia.resources
+C:\Users\Jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.ConfDataBase.resources
+C:\Users\Jake the dog\Documents\GitHub\ProjectCont01\WindowsFormsApplication3\obj\x86\Debug\WindowsFormsApplication3.Login.resources

@@ -60,6 +60,44 @@ namespace WindowsFormsApplication3
         public decimal IVA { get; set; }
 
     }
+	 public class EgresoItem
+	 {
+		 public int IdEmpresa { get; set; }
+		 public int IdSucursal { get; set; }
+		 public string Poliza { get; set; }
+		 public string Fecha { get; set; }
+		 public string Factura { get; set; }
+		 public int IdProveedor { get; set; }
+		 public string Descripcion { get; set; }
+		 public string Clasificacion { get; set; }
+		 public decimal ImporteSinDescuento { get; set; }
+		 public decimal IEPS { get; set; }
+		 public decimal Descuento { get; set; }
+		 public decimal Bienes { get; set; }
+		 public float PorIVA { get; set; }
+		 public decimal IVA { get; set; }
+		 public decimal Total { get; set; }
+		 public string FechaDePago { get; set; }
+		 public string IdUsuarioReg { get; set; }
+		 public string FechaReg { get; set; }
+	 }
+		public class IngresoItem
+	 {
+		 public int IdEmpresa { get; set; }
+		 public int IdCliente { get; set; }
+		 public int IdSucursal { get; set; }
+		 public string Fecha { get; set; }
+		 public string Factura { get; set; }
+		 public decimal Importe { get; set; }
+		 public float PorIVA { get; set; }
+		 public decimal IVA { get; set; }
+		 public decimal Total { get; set; }
+		 public string FechaDeCobro { get; set; }
+		 public string IdUsuarioReg { get; set; }
+		 public string FechaReg { get; set; }
+		 public float PorRetIVA = 66.7F;
+
+	 }
     public class ListExcel
     {
         List<ReporteExel> Data = new List<ReporteExel>();

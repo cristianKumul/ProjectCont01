@@ -707,7 +707,7 @@ namespace WindowsFormsApplication3
            if (openFileDialog1.ShowDialog() == DialogResult.OK)
            {
               path = openFileDialog1.SelectedPath;
-              pathIngresostxt.Text = path;
+              pathEgresos.Text = path;
               //textBox2.Text = path;
               //MessageBox.Show(openFileDialog1.SelectedPath);
            }
@@ -726,7 +726,7 @@ namespace WindowsFormsApplication3
            {
               
               path = openFileDialog1.SelectedPath;
-              pathEgresostxt.Text = path;
+              pathIngresos.Text = path;
               
               //textBox2.Text = path;
               //MessageBox.Show(openFileDialog1.SelectedPath);
@@ -752,10 +752,11 @@ namespace WindowsFormsApplication3
                  MessageBox.Show("Esta logueado");
                  try
                  {
-                    DirectoryInfo di = new DirectoryInfo(pathIngresostxt.Text);
+                    DirectoryInfo di = new DirectoryInfo(pathEgresos.Text);
                     FileInfo[] files = di.GetFiles("*.xml");
                     progressBar2.Maximum = files.Count();
 
+						  progressBar2.Value = 0;
                           /*
                     foreach (FileInfo filetmp in files)
                     {
@@ -769,16 +770,47 @@ namespace WindowsFormsApplication3
                        progressBar2.Value += 1;
                     }
                    */
-                    CapturaSISPrevia foo = new CapturaSISPrevia();
-                    foo.Show();
+						  using (var formCap =  new CapturaSISPrevia())
+						{
+                    //var foo = new CapturaSISPrevia();
+						  //foo.Text = "Captura de Egresos";
+							
+							xmlClass xmlTool = new xmlClass();
+							Factura factura = new Factura();
+							List<EgresoItem> datosEgresos = new List<EgresoItem>();
+							EgresoItem egreso = new EgresoItem();
+							foreach (FileInfo filetmp in files)
+							{
+								string file = filetmp.ToString();
+								
+								factura = xmlTool.getXMLValues(filetmp.FullName);
+								egreso = xmlTool.Factura2Egreso(factura);
+								egreso.IdUsuarioReg = LoginUser.UserID;
+								datosEgresos.Add(egreso);
 
-                     MessageBox.Show("Se capturaron " + progressBar2.Maximum + " registros de Ingresos ");
+
+
+								//List<Factura> datoFactura = new List<Factura>();
+								//datoFactura.Add(factura)
+								progressBar2.Value += 1;
+							}
+							formCap.tipoCaptura = "Egresos";
+							formCap.Text = "Captura de Egresos";
+							formCap.datosCaptura = datosEgresos;
+							formCap.ShowDialog();
+						 
+
+						}
+                    //foo.Show();
+
+                    
                      progressBar1.Value = 0;
 
                  }
-                 catch
+					  catch (Exception err)
                  {
                     MessageBox.Show("Carpeta NO seleccionada");
+						  MessageBox.Show(err.Message);
                  }
                  
 
@@ -799,7 +831,7 @@ namespace WindowsFormsApplication3
                     {
                        if (formLogin.LoginStatus)
                        {
-                          MessageBox.Show("Bienvenido " + formLogin.userLogged);
+                          MessageBox.Show("FALLA " + formLogin.userLogged);
                        }
 
                     }
@@ -833,8 +865,141 @@ namespace WindowsFormsApplication3
 
         private void insertEgresos_Click(object sender, EventArgs e)
         {
+			  string connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
+			  SqlConnection conn = new SqlConnection(connStr);
 
+			  try
+			  {
+				  using (SqlConnection con = conn)
+				  {
+					  con.Open();
+				  }
+
+				  if (LoginUser.UserID != "")
+				  {
+					  MessageBox.Show("Esta logueado");
+					  try
+					  {
+						  DirectoryInfo di = new DirectoryInfo(pathIngresos.Text);
+						  FileInfo[] files = di.GetFiles("*.xml");
+						  progressBar2.Maximum = files.Count();
+
+						  /*
+				  foreach (FileInfo filetmp in files)
+				  {
+					  string file = filetmp.ToString();
+					  xmlClass xmlTool = new xmlClass();
+					  Factura factura = xmlTool.getXMLValues(filetmp.FullName);
+					  MessageBox.Show(factura.RFCReceptor);
+
+					  //List<Factura> datoFactura = new List<Factura>();
+					  //datoFactura.Add(factura)
+					  progressBar2.Value += 1;
+				  }
+				 */
+						  using (var formCap = new CapturaSISPrevia())
+						  {
+							  //var foo = new CapturaSISPrevia();
+							  //foo.Text = "Captura de Egresos";
+							  formCap.tipoCaptura = "Ingresos";
+							  formCap.Text = "Captura de Ingresos";
+							  formCap.ShowDialog();
+
+
+
+
+						  }
+						  //foo.Show();
+
+						  
+						  progressBar1.Value = 0;
+
+					  }
+					  catch
+					  {
+						  MessageBox.Show("Carpeta NO seleccionada");
+					  }
+
+
+
+
+
+				  }
+				  else
+				  {
+					  MessageBox.Show("Falta logueo");
+					  //Login frmLogin = new Login();
+					  //frmLogin.Show();
+
+					  using (var formLogin = new Login())
+					  {
+						  var result = formLogin.ShowDialog();
+						  if (result == DialogResult.OK)
+						  {
+							  if (formLogin.LoginStatus)
+							  {
+								  MessageBox.Show("FALLA " + formLogin.userLogged);
+							  }
+
+						  }
+						  else
+						  {
+							  if (formLogin.LoginStatus)
+							  {
+								  MessageBox.Show("Bienvenido " + formLogin.userLogged);
+								  LoginUser.UserID = formLogin.userLogged;
+								  currentUser.Text = LoginUser.UserID;
+							  }
+							  else
+							  {
+								  MessageBox.Show("Usuario NO Encontrado");
+							  }
+
+						  }
+
+					  }
+
+				  }
+			  }
+			  catch
+			  {
+				  MessageBox.Show("Error en la conexión a la base de datos");
+			  }
+			  /*--------------------------------------------*/
+          
+          
         }
+
+		  private void button8_Click_2(object sender, EventArgs e)
+		  {
+			  using (var formLogin = new Login())
+			  {
+				  var result = formLogin.ShowDialog();
+				  if (result == DialogResult.OK)
+				  {
+					  if (formLogin.LoginStatus)
+					  {
+						  MessageBox.Show("Bienvenido " + formLogin.userLogged);
+					  }
+
+				  }
+				  else
+				  {
+					  if (formLogin.LoginStatus)
+					  {
+						  MessageBox.Show("Bienvenido " + formLogin.userLogged);
+						  LoginUser.UserID = formLogin.userLogged;
+						  currentUser.Text = LoginUser.UserID;
+					  }
+					  else
+					  {
+						  MessageBox.Show("Usuario NO Encontrado");
+					  }
+
+				  }
+
+			  }
+		  }
 
        
 
