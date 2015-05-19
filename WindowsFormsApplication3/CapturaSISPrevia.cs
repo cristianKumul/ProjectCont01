@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace WindowsFormsApplication3
 {
@@ -17,7 +19,8 @@ namespace WindowsFormsApplication3
 		public string tipoCaptura { get; set; }
 		public List<bool> statusFacturas = new List<bool>();
 
-		
+      static string connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
+      static SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConn1"].ConnectionString);
       public CapturaSISPrevia()
       {
          InitializeComponent();
@@ -69,6 +72,37 @@ namespace WindowsFormsApplication3
 
 			for (int i = 0; i < datosCaptura.Count; i++)
 			{
+            try
+            {  string connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
+               SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConn1"].ConnectionString);
+               conn.Open();
+               using (SqlConnection con = conn)
+               {
+                  string fo = "SELECT cl.Clave,cld.Clave FROM [" + conn.Database + "].[dbo].[Cat_Clientes] AS cl JOIN [" + con.Database + "].[dbo].[Cat_ClientesDe] as cld on cld.[RFC] = '" + datosCaptura[i].Emisor + "' WHERE cl.RFC = '" + datosCaptura[i].Receptor + "';";
+                  using (SqlCommand command = new SqlCommand("SELECT cl.Clave,cld.Clave FROM [" + conn.Database + "].[dbo].[Cat_Clientes] AS cl JOIN [" + con.Database + "].[dbo].[Cat_ClientesDe] as cld on cld.[RFC] = '" + datosCaptura[i].Emisor + "' WHERE cl.RFC = '" + datosCaptura[i].Receptor + "';", con))
+                  {
+                     using (SqlDataReader reader = command.ExecuteReader())
+                     {
+
+                        if (reader.Read())
+                        {
+                           MessageBox.Show(reader[0].ToString() + " , " + reader[1].ToString());
+                      
+                        
+                        }
+
+                     }
+
+                  }
+
+               }
+               conn.Close();
+            }
+            catch(Exception error )
+            {
+               
+               MessageBox.Show( error.Message.ToString());
+            }
 				dr = dt.NewRow();
 				dr["Factura"] = datosCaptura[i].Factura;
 				dr["Descripción"] = datosCaptura[i].Descripcion;
@@ -128,6 +162,7 @@ namespace WindowsFormsApplication3
 			if (e.ColumnIndex == dataGridView1.Columns["verPDF"].Index && e.RowIndex >= 0)
 			{
 				
+
 				MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString());
             dataGridView1.Rows[e.RowIndex].Cells[0].Value = true;
 				MessageBox.Show(e.RowIndex.ToString());
