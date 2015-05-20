@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace WindowsFormsApplication3
 {
@@ -39,7 +40,7 @@ namespace WindowsFormsApplication3
          dt.Columns.Add(new DataColumn("Emisor", typeof(string)));
          dt.Columns.Add(new DataColumn("Receptor", typeof(string)));
          dt.Columns.Add(new DataColumn("Factura", typeof(string)));
-         dt.Columns.Add(new DataColumn("Descripción", typeof(string)));
+         dt.Columns.Add(new DataColumn("Descripcion", typeof(string)));
          dt.Columns.Add(new DataColumn("Importe", typeof(decimal)));
          dt.Columns.Add(new DataColumn("Descuento", typeof(decimal)));
          dt.Columns.Add(new DataColumn("IVA", typeof(decimal)));
@@ -78,17 +79,49 @@ namespace WindowsFormsApplication3
                conn.Open();
                using (SqlConnection con = conn)
                {
-                  string fo = "SELECT cl.Clave,cld.Clave FROM [" + conn.Database + "].[dbo].[Cat_Clientes] AS cl JOIN [" + con.Database + "].[dbo].[Cat_ClientesDe] as cld on cld.[RFC] = '" + datosCaptura[i].Emisor + "' WHERE cl.RFC = '" + datosCaptura[i].Receptor + "';";
-                  using (SqlCommand command = new SqlCommand("SELECT cl.Clave,cld.Clave FROM [" + conn.Database + "].[dbo].[Cat_Clientes] AS cl JOIN [" + con.Database + "].[dbo].[Cat_ClientesDe] as cld on cld.[RFC] = '" + datosCaptura[i].Emisor + "' WHERE cl.RFC = '" + datosCaptura[i].Receptor + "';", con))
+
+                  string ingreso ="SELECT cl.Clave,cld.Clave FROM [" + conn.Database + "].[dbo].[Cat_Clientes] AS cl JOIN [" + con.Database + "].[dbo].[Cat_ClientesDe] as cld on cld.[RFC] = '" + datosCaptura[i].Receptor + "' WHERE cl.RFC = '" + datosCaptura[i].Emisor + "';";
+                  string egreso = "SELECT cl.Clave,prov.Clave FROM [" + conn.Database + "].[dbo].[Cat_Clientes] AS cl JOIN [" + conn.Database + "].[dbo].[Cat_Proveedores] as prov on prov.[RFC] = '" + datosCaptura[i].Emisor + "' WHERE cl.RFC = '" + datosCaptura[i].Receptor + "';";
+                  string query ="";
+
+                  if (tipoCaptura == "Egresos")
+                  {
+                     query = egreso;
+                  }
+                  if (tipoCaptura == "Ingresos")
+                  {
+                    query = ingreso;
+                  }
+                  using (SqlCommand command = new SqlCommand(query, con))
                   {
                      using (SqlDataReader reader = command.ExecuteReader())
                      {
 
                         if (reader.Read())
                         {
-                           MessageBox.Show(reader[0].ToString() + " , " + reader[1].ToString());
-                      
-                        
+                           datosCaptura[i].EnBase = true;
+
+                           //MessageBox.Show(reader[0].ToString() + " , " + reader[1].ToString());
+                           if (tipoCaptura == "Egresos")
+                           {
+                              datosCaptura[i].IdEmpresa = Convert.ToInt32(reader[0].ToString());//reader.GetInt32(0);//(int)reader[0];
+                              datosCaptura[i].IdProveedor =Convert.ToInt32( reader[1].ToString());//reader.GetInt32(1); //(int)reader[1];
+                              int foo1 = datosCaptura[i].IdEmpresa;
+                              int foo2 = datosCaptura[i].IdProveedor;
+                           }
+                           if (tipoCaptura == "Ingresos")
+                           {
+
+                              datosCaptura[i].IdEmpresa = Convert.ToInt32(reader[0].ToString());
+                              datosCaptura[i].IdCliente = Convert.ToInt32(reader[1].ToString());
+                              int foo1 = datosCaptura[i].IdEmpresa;
+                              int foo2 = datosCaptura[i].IdCliente;
+                           }
+
+                        }
+                        else
+                        {
+                           datosCaptura[i].EnBase = false;
                         }
 
                      }
@@ -100,41 +133,42 @@ namespace WindowsFormsApplication3
             }
             catch(Exception error )
             {
-               
+
+               var st = new StackTrace(error,true);
+               var frame = st.GetFrame(0);
+               var line = frame.GetFileLineNumber();
+
+
+
                MessageBox.Show( error.Message.ToString());
             }
 				dr = dt.NewRow();
 				dr["Factura"] = datosCaptura[i].Factura;
-				dr["Descripción"] = datosCaptura[i].Descripcion;
-				dr["Descuento"] = datosCaptura[i].Descuento;
-				dr["IVA"] = datosCaptura[i].IVA;
+            
+				dr["Descripcion"] = datosCaptura[i].Descripcion;
+            try
+            {
+               dr["Descuento"] = datosCaptura[i].Descuento;
+               
+            }
+            catch
+            {
+               dr["Descuento"] = 0.0M;
+              
+            }
+            dr["IVA"] = datosCaptura[i].IVA;
 				dr["Total"] = datosCaptura[i].Total;
 				dr["File"] = datosCaptura[i].Archivo;
             dr["ID"] = i;
             dr["Emisor"] = datosCaptura[i].Emisor;
             dr["Receptor"] = datosCaptura[i].Receptor;
+            dr["Select"] = datosCaptura[i].EnBase ? true : false;
+            dr["BaseDatos"] = datosCaptura[i].EnBase ? "OK" : "No encontrado";
 				dt.Rows.Add(dr);
 
 			}
 
-			/*
-			dr["Descripción"] = "CARPETA ASFALTICA";
-         dr["Importe"] = "13800.00";
-         dr["IVA"] = "16";
-         dr["Total"] = "15318.00";
-         dt.Rows.Add(dr);
-
-			
-
-			dr = dt.NewRow();
-			dr["Factura"] = "1174";
-
-			dr["Descripción"] = "CARPETA ASFALTICA";
-			dr["Importe"] = "13800.00";
-			dr["IVA"] = "16";
-			dr["Total"] = "15318.00";
-			dt.Rows.Add(dr);
-			  */
+		
 			ds.Tables.Add(dt);
 			
 			
@@ -185,14 +219,6 @@ namespace WindowsFormsApplication3
 				frm.Show();
 			}
 
-        /* if (e.ColumnIndex == dataGridView1.Columns["Select"].Index)
-         {
-            dataGridView1.EndEdit();  //Stop editing of cell.
-            if ((bool)dataGridView1.Rows[e.RowIndex].Cells["Select"].Value)
-               MessageBox.Show("The Value is Checked", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-               //MessageBox.Show("UnChecked", "Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-         }*/
 		}
    }
 }

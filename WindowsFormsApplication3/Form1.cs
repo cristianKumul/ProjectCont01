@@ -13,7 +13,7 @@ using Microsoft.Reporting.WinForms;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
-
+using System.Diagnostics;
 
 
 
@@ -881,44 +881,74 @@ namespace WindowsFormsApplication3
 					  MessageBox.Show("Esta logueado");
 					  try
 					  {
-						  DirectoryInfo di = new DirectoryInfo(pathIngresos.Text);
-						  FileInfo[] files = di.GetFiles("*.xml");
-						  progressBar2.Maximum = files.Count();
+                    DirectoryInfo di = new DirectoryInfo(pathIngresos.Text);
+                    FileInfo[] files = di.GetFiles("*.xml");
+                    progressBar2.Maximum = files.Count();
 
-						  /*
-				  foreach (FileInfo filetmp in files)
-				  {
-					  string file = filetmp.ToString();
-					  xmlClass xmlTool = new xmlClass();
-					  Factura factura = xmlTool.getXMLValues(filetmp.FullName);
-					  MessageBox.Show(factura.RFCReceptor);
+						  progressBar2.Value = 0;
+                          /*
+                    foreach (FileInfo filetmp in files)
+                    {
+                       string file = filetmp.ToString();
+                       xmlClass xmlTool = new xmlClass();
+                       Factura factura = xmlTool.getXMLValues(filetmp.FullName);
+                       MessageBox.Show(factura.RFCReceptor);
 
-					  //List<Factura> datoFactura = new List<Factura>();
-					  //datoFactura.Add(factura)
-					  progressBar2.Value += 1;
-				  }
-				 */
-						  using (var formCap = new CapturaSISPrevia())
-						  {
-							  //var foo = new CapturaSISPrevia();
-							  //foo.Text = "Captura de Egresos";
-							  formCap.tipoCaptura = "Ingresos";
-							  formCap.Text = "Captura de Ingresos";
-							  formCap.ShowDialog();
+                       //List<Factura> datoFactura = new List<Factura>();
+                       //datoFactura.Add(factura)
+                       progressBar2.Value += 1;
+                    }
+                   */
+						  using (var formCap =  new CapturaSISPrevia())
+						{
+                    //var foo = new CapturaSISPrevia();
+						  //foo.Text = "Captura de Egresos";
+							
+							xmlClass xmlTool = new xmlClass();
+							Factura factura = new Factura();
+                     List<IngresoItem> datosIngr = new List<IngresoItem>();
+				
+							
+                     IngresoItem ingreso = new IngresoItem();
+							foreach (FileInfo filetmp in files)
+							{
+								string file = filetmp.ToString();
+								
+								factura = xmlTool.getXMLValues(filetmp.FullName);
+                        ingreso = xmlTool.Factura2Ingreso(factura);
+                        ingreso.IdUsuarioReg = LoginUser.UserID;
+								ingreso.Archivo = filetmp.FullName;
+								datosIngr.Add(ingreso);
 
 
 
+								//List<Factura> datoFactura = new List<Factura>();
+								//datoFactura.Add(factura)
+								progressBar2.Value += 1;
+							}
+							formCap.tipoCaptura = "Ingresos";
+							formCap.Text = "Captura de Ingresos";
+							formCap.datosCaptura = datosIngr;
+							formCap.ShowDialog();
+						 
 
-						  }
-						  //foo.Show();
+						}
+                    //foo.Show();
 
-						  
-						  progressBar1.Value = 0;
+                    
+                     progressBar1.Value = 0;
 
 					  }
-					  catch
+					  catch(Exception error)
 					  {
 						  MessageBox.Show("Carpeta NO seleccionada");
+                    var st = new StackTrace(error, true);
+                    var frame = st.GetFrame(0);
+                    var line = frame.GetFileLineNumber();
+
+
+
+                    MessageBox.Show(error.Message.ToString());
 					  }
 
 

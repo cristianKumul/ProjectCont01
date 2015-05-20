@@ -83,6 +83,8 @@ namespace WindowsFormsApplication3
 		 public string Archivo { get; set; }
        public string Emisor { get; set; }
        public string Receptor { get; set; }
+       public bool EnBase { get; set; }
+
 
 
 	 }
@@ -93,6 +95,7 @@ namespace WindowsFormsApplication3
 		 public int IdSucursal { get; set; }
 		 public string Fecha { get; set; }
 		 public string Factura { get; set; }
+       public string Descripcion { get; set; }
 		 public decimal Importe { get; set; }
 		 public float PorIVA { get; set; }
 		 public decimal IVA { get; set; }
@@ -104,6 +107,8 @@ namespace WindowsFormsApplication3
 		 public string Archivo { get; set; }
        public string Emisor { get; set; }
        public string Receptor { get; set; }
+       public bool EnBase { get; set; }
+
 
 
 	 }

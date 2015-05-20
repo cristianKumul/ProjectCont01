@@ -585,9 +585,34 @@ namespace WindowsFormsApplication3
 				ingreso.FechaReg = sqlDate;
 				ingreso.Factura = factura.SerieFolio;
 				ingreso.Importe = decimal.Parse(factura.SubTotal);
-				ingreso.IVA = decimal.Parse(factura.IVA);
-				ingreso.Total = decimal.Parse(factura.Total);
+            ingreso.Emisor = factura.RFCEmisor;
+            ingreso.Receptor = factura.RFCReceptor;
+            string descripcion = "";
+            foreach (Articulo art in factura.Articulos)
+            {
+               if (descripcion.Length < 100)
+               {
+                  descripcion += art.Concepto + "/";
+               }
+            }
+            ingreso.Descripcion = descripcion;
 
+            try
+            {
+               ingreso.IVA = decimal.Parse(factura.IVA);
+            }
+            catch
+            {
+               ingreso.IVA = 0.0M;
+            }
+            try
+            {
+               ingreso.Total = decimal.Parse(factura.Total);
+            }
+            catch
+            {
+               ingreso.Total = 0.0M;
+            }
 				return ingreso;
 
 

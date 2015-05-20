@@ -199,14 +199,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WindowsFormsApplication3.exe" size="463360">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WindowsFormsApplication3.exe" size="467968">
       <assemblyIdentity name="WindowsFormsApplication3" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>QYeno1eXkSFjxFIEvZfEgnqDjII=</dsig:DigestValue>
+        <dsig:DigestValue>hfzBfFsuUyn2nrxFV0sM4frQmTQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
