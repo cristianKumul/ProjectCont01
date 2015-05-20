@@ -219,6 +219,11 @@ namespace WindowsFormsApplication3
 				frm.Show();
 			}
 
-		}
+      }
+
+      private void cancelarbtn_Click(object sender, EventArgs e)
+      {
+         this.Close();
+      }
    }
 }
