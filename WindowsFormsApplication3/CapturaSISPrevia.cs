@@ -116,6 +116,7 @@ namespace WindowsFormsApplication3
                               datosCaptura[i].IdCliente = Convert.ToInt32(reader[1].ToString());
                               int foo1 = datosCaptura[i].IdEmpresa;
                               int foo2 = datosCaptura[i].IdCliente;
+
                            }
 
                         }
@@ -224,6 +225,78 @@ namespace WindowsFormsApplication3
       private void cancelarbtn_Click(object sender, EventArgs e)
       {
          this.Close();
+      }
+
+      private void button1_Click(object sender, EventArgs e)
+      {
+         
+         
+
+         for (int i = 0; i < this.dataGridView1.RowCount; i++ )
+         {
+
+            int id = Convert.ToInt32(this.dataGridView1.Rows[i].Cells[12].Value.ToString());
+            //MessageBox.Show(this.dataGridView1.Rows[i].Cells[1].Value.ToString());
+            if (this.dataGridView1.Rows[i].Cells[1].Value.ToString() == "True")
+            {
+               //int id = Convert.ToInt32(this.dataGridView1.Rows[i].Cells[12].Value.ToString());
+               //MessageBox.Show(id.ToString());
+
+               datosCaptura[id].SeleccionadoPorUsuario = true;
+            }
+            else
+            {
+               //int id = Convert.ToInt32(this.dataGridView1.Rows[i].Cells[12].Value.ToString());
+               datosCaptura[Convert.ToInt32(this.dataGridView1.Rows[i].Cells[12].Value.ToString())].SeleccionadoPorUsuario = false;
+            }
+             
+         }
+
+         IEnumerable<dynamic> datos = datosCaptura;
+
+         IEnumerable<dynamic> consulta = datos.Where(s => s.EnBase == true && s.SeleccionadoPorUsuario == true);
+         //IEnumerable<dynamic> result = consulta.Where(s => s.SeleccionadoPorUsuario == true);
+         
+         MessageBox.Show(consulta.Count().ToString());
+
+
+         string queryInsert = "";
+         string commandEgresos = "INSERT INTO [@database].[dbo].[tblEgresos] ([IdEmpresa],[IdSucursal] ,[Fecha] ,[Factura],[IdProveedor]"+
+           ",[Descripcion] ,[ImporteSinDescuento],[Descuento],[Importe],[PorIVA],[IVA],[Total],[FechaDePago],[Estatus],[IdUsuarioReg]"+
+           ",[FechaReg],[DeducibleISR],[DeducibleIETU],[EsInversion],[AplicaParaDIOT]) VALUES (@Empresa,0,@Fecha,@Factura,@ClientProveedor,@Descripcion,@ImporteSnDesc,@Descuento,@Importe,16.0,@IVA,@FechaPago,'PAGADA',@IdUsuario,@FechaReg,1,1,0,1);";
+
+         string commandIngresos = "INSERT INTO [@database].[dbo].[tblIngresos] ([IdEmpresa],[IdCliente],[IdSucursal] ,[Fecha],[Factura] ,[Importe],"+
+           "[PorIVA],[IVA],[Total],[FechaDeCobro] ,[Estatus],[IdUsuarioReg],[FechaReg],[AcumulableISR]"+
+           ",[AcumulableIETU],[PorRetISR],[RetISR],[PorRetIVA],[RetIVA]) VALUES (@Empresa,@ClientProveedor,0,@Fecha,@Factura,@Importe,16.0,@IVA,@Total,@FechaCobro,'COBRADA',@IdUsuario,@FechaReg,1,1,10.0,0.00,66.67,0.00);";
+
+         
+
+
+         string connStr = ConfigurationManager.ConnectionStrings["MyConn1"].ToString();
+         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConn1"].ConnectionString);
+         conn.Open();
+         using (SqlConnection con = conn)
+         {
+            queryInsert = tipoCaptura == "Egresos" ? commandEgresos : commandIngresos;
+            using(SqlCommand query = new SqlCommand(queryInsert))
+            {
+               query.Connection = con;
+               bool bit = tipoCaptura == "Egresos" ? true : false;
+               if (bit)
+               {
+                  query.Parameters.Add("@Empresa", SqlDbType.Int, 4).Value = consulta.ElementAt(0).IdEmpresa;
+                  query.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = consulta.ElementAt(0).Fecha;
+                  query.Parameters.Add("@Factura", SqlDbType.VarChar,80).Value = consulta.ElementAt(0).Factura;
+
+
+               }
+            }
+         }
+      
+         
+
+         
+         
       }
    }
 }

@@ -84,6 +84,8 @@ namespace WindowsFormsApplication3
        public string Emisor { get; set; }
        public string Receptor { get; set; }
        public bool EnBase { get; set; }
+       public bool SeleccionadoPorUsuario { get; set; }
+
 
 
 
@@ -108,6 +110,7 @@ namespace WindowsFormsApplication3
        public string Emisor { get; set; }
        public string Receptor { get; set; }
        public bool EnBase { get; set; }
+       public bool SeleccionadoPorUsuario { get; set; }
 
 
 

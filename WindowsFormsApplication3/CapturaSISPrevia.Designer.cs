@@ -30,8 +30,8 @@
       {
          this.dataGridView1 = new System.Windows.Forms.DataGridView();
          this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-         this.button1 = new System.Windows.Forms.Button();
          this.cancelarbtn = new System.Windows.Forms.Button();
+         this.button1 = new System.Windows.Forms.Button();
          ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
          this.splitContainer1.Panel1.SuspendLayout();
@@ -67,15 +67,6 @@
          this.splitContainer1.SplitterDistance = 134;
          this.splitContainer1.TabIndex = 1;
          // 
-         // button1
-         // 
-         this.button1.Location = new System.Drawing.Point(3, 314);
-         this.button1.Name = "button1";
-         this.button1.Size = new System.Drawing.Size(119, 104);
-         this.button1.TabIndex = 0;
-         this.button1.Text = "Capturar Selección";
-         this.button1.UseVisualStyleBackColor = true;
-         // 
          // cancelarbtn
          // 
          this.cancelarbtn.Location = new System.Drawing.Point(3, 225);
@@ -85,6 +76,16 @@
          this.cancelarbtn.Text = "Cancelar";
          this.cancelarbtn.UseVisualStyleBackColor = true;
          this.cancelarbtn.Click += new System.EventHandler(this.cancelarbtn_Click);
+         // 
+         // button1
+         // 
+         this.button1.Location = new System.Drawing.Point(3, 314);
+         this.button1.Name = "button1";
+         this.button1.Size = new System.Drawing.Size(119, 104);
+         this.button1.TabIndex = 0;
+         this.button1.Text = "Capturar Selección";
+         this.button1.UseVisualStyleBackColor = true;
+         this.button1.Click += new System.EventHandler(this.button1_Click);
          // 
          // CapturaSISPrevia
          // 
