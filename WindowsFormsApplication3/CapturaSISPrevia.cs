@@ -287,6 +287,7 @@ namespace WindowsFormsApplication3
                   query.Parameters.Add("@Empresa", SqlDbType.Int, 4).Value = consulta.ElementAt(0).IdEmpresa;
                   query.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = consulta.ElementAt(0).Fecha;
                   query.Parameters.Add("@Factura", SqlDbType.VarChar,80).Value = consulta.ElementAt(0).Factura;
+                  query.Parameters.Add("@ClientProveedor", SqlDbType.Int, 4).Value = consulta.ElementAt(0).IdProveedor;
 
 
                }
