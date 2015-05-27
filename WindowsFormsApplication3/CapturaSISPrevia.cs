@@ -280,46 +280,53 @@ namespace WindowsFormsApplication3
 				  ",[AcumulableIETU],[PorRetISR],[RetISR],[PorRetIVA],[RetIVA]) VALUES (@Empresa,@ClientProveedor,0,@Fecha,@Factura,@Importe,16.0,@IVA,@Total,@FechaCobro,'COBRADA',@IdUsuario,@FechaReg,1,1,10.0,0.00,66.67,0.00);";
 
             queryInsert = tipoCaptura == "Egresos" ? commandEgresos : commandIngresos;
-            using(SqlCommand query = new SqlCommand(queryInsert))
+            foreach (dynamic T in consulta)
             {
-               query.Connection = con;
-					string bd = conn.Database;
-               bool bit = tipoCaptura == "Egresos" ? true : false;
-               if (bit)
+               using (SqlCommand query = new SqlCommand(queryInsert))
                {
-						//query.Parameters.AddWithValue("@database",bd);
-                  query.Parameters.Add("@Empresa", SqlDbType.Int, 4).Value = consulta.ElementAt(0).IdEmpresa;
-                  query.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = consulta.ElementAt(0).Fecha;
-                  query.Parameters.Add("@Factura", SqlDbType.VarChar,80).Value = consulta.ElementAt(0).Factura;
-                  query.Parameters.Add("@ClientProveedor", SqlDbType.Int, 4).Value = consulta.ElementAt(0).IdProveedor;
-						query.Parameters.Add("@Descripcion", SqlDbType.VarChar, 100).Value = consulta.ElementAt(0).Descripcion;
-						query.Parameters.Add("@ImporteSnDesc",SqlDbType.Money).Value = consulta.ElementAt(0).Total - consulta.ElementAt(0).Descuento;
-						query.Parameters.Add("@Descuento",SqlDbType.Money).Value = consulta.ElementAt(0).Descuento;
-						query.Parameters.Add("@Importe", SqlDbType.Money).Value = consulta.ElementAt(0).Total;
-						query.Parameters.Add("@IVA",SqlDbType.Money).Value = consulta.ElementAt(0).IVA;
-						query.Parameters.Add("@FechaPago",SqlDbType.DateTime).Value = consulta.ElementAt(0).Fecha;
-						query.Parameters.Add("@IdUsuario",SqlDbType.VarChar,20).Value = consulta.ElementAt(0).IdUsuarioReg;
-						query.Parameters.Add("@FechaReg", SqlDbType.DateTime).Value = consulta.ElementAt(0).Fecha;
-						query.Parameters.Add("@Total", SqlDbType.Money).Value = consulta.ElementAt(0).Total - consulta.ElementAt(0).Descuento;
-						try
-						{
-							con.Open();
-							int recordsAffected = query.ExecuteNonQuery();
-							MessageBox.Show("Capturas " + recordsAffected.ToString());
-						}
-						catch (SqlException sqlex)
-						{
-							MessageBox.Show(sqlex.Message.ToString());
-							
-						}
-						finally
-						{
-							con.Close();
-							MessageBox.Show(consulta.ElementAt(0).Factura);
-						}
+                  query.Connection = con;
+                  string bd = conn.Database;
+                  bool bit = tipoCaptura == "Egresos" ? true : false;
+                  if (bit)
+                  {
 
+                     //query.Parameters.AddWithValue("@database",bd);
+                     query.Parameters.Add("@Empresa", SqlDbType.Int, 4).Value = T.IdEmpresa;
+                     query.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = T.Fecha;
+                     query.Parameters.Add("@Factura", SqlDbType.VarChar, 80).Value = T.Factura;
+                     query.Parameters.Add("@ClientProveedor", SqlDbType.Int, 4).Value = T.IdProveedor;
+                     query.Parameters.Add("@Descripcion", SqlDbType.VarChar, 100).Value = T.Descripcion;
+                     query.Parameters.Add("@ImporteSnDesc", SqlDbType.Money).Value = T.Total - T.Descuento;
+                     query.Parameters.Add("@Descuento", SqlDbType.Money).Value = T.Descuento;
+                     query.Parameters.Add("@Importe", SqlDbType.Money).Value = T.Total;
+                     query.Parameters.Add("@IVA", SqlDbType.Money).Value = T.IVA;
+                     query.Parameters.Add("@FechaPago", SqlDbType.DateTime).Value = T.Fecha;
+                     query.Parameters.Add("@IdUsuario", SqlDbType.VarChar, 20).Value = T.IdUsuarioReg;
+                     query.Parameters.Add("@FechaReg", SqlDbType.DateTime).Value = T.Fecha;
+                     query.Parameters.Add("@Total", SqlDbType.Money).Value = T.Total - T.Descuento;
+                     try
+                     {
+                        con.Open();
+                        int recordsAffected = query.ExecuteNonQuery();
+                        MessageBox.Show("Capturas " + recordsAffected.ToString());
+                     }
+                     catch (SqlException sqlex)
+                     {
+                        MessageBox.Show(sqlex.Message.ToString());
+
+                     }
+                     finally
+                     {
+                        con.Close();
+                        //MessageBox.Show(consulta.ElementAt(0).Factura);
+                     }
+
+
+
+                  }
                }
             }
+
          }
       
          
