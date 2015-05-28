@@ -76,6 +76,7 @@ namespace WindowsFormsApplication3
 		 public decimal Bienes { get; set; }
 		 public float PorIVA { get; set; }
 		 public decimal IVA { get; set; }
+       public decimal Importe { get; set; }
 		 public decimal Total { get; set; }
 		 public string FechaDePago { get; set; }
 		 public string IdUsuarioReg { get; set; }
@@ -101,6 +102,7 @@ namespace WindowsFormsApplication3
 		 public decimal Importe { get; set; }
 		 public float PorIVA { get; set; }
 		 public decimal IVA { get; set; }
+
 		 public decimal Total { get; set; }
 		 public string FechaDeCobro { get; set; }
 		 public string IdUsuarioReg { get; set; }

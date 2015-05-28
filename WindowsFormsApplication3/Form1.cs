@@ -749,7 +749,7 @@ namespace WindowsFormsApplication3
 
               if (LoginUser.UserID != "")
               {
-                 MessageBox.Show("Esta logueado");
+                 //MessageBox.Show("Esta logueado");
                  try
                  {
                     DirectoryInfo di = new DirectoryInfo(pathEgresos.Text);
@@ -840,7 +840,7 @@ namespace WindowsFormsApplication3
                     {
                        if (formLogin.LoginStatus)
                        {
-                          MessageBox.Show("Bienvenido " + formLogin.userLogged);
+                          MessageBox.Show("Bienvenido (a), " + formLogin.userLogged);
                           LoginUser.UserID = formLogin.userLogged;
                           currentUser.Text = LoginUser.UserID;
                        }
@@ -1010,7 +1010,7 @@ namespace WindowsFormsApplication3
 				  {
 					  if (formLogin.LoginStatus)
 					  {
-						  MessageBox.Show("Bienvenido " + formLogin.userLogged);
+						  MessageBox.Show("Bienvenido (a), " + formLogin.userLogged);
 					  }
 
 				  }
@@ -1018,7 +1018,7 @@ namespace WindowsFormsApplication3
 				  {
 					  if (formLogin.LoginStatus)
 					  {
-						  MessageBox.Show("Bienvenido " + formLogin.userLogged);
+                    MessageBox.Show("Bienvenido (a), " + formLogin.userLogged);
 						  LoginUser.UserID = formLogin.userLogged;
 						  currentUser.Text = LoginUser.UserID;
 					  }

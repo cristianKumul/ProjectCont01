@@ -157,10 +157,12 @@ namespace WindowsFormsApplication3
                dr["Descuento"] = 0.0M;
               
             }
+            decimal foobar = datosCaptura[i].IVA; 
             dr["IVA"] = datosCaptura[i].IVA;
 				dr["Total"] = datosCaptura[i].Total;
 				dr["File"] = datosCaptura[i].Archivo;
             dr["ID"] = i;
+            dr["Importe"] = datosCaptura[i].Importe;
             dr["Emisor"] = datosCaptura[i].Emisor;
             dr["Receptor"] = datosCaptura[i].Receptor;
             dr["Select"] = datosCaptura[i].EnBase ? true : false;
@@ -198,9 +200,9 @@ namespace WindowsFormsApplication3
 			{
 				
 
-				MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString());
+				//MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString());
             dataGridView1.Rows[e.RowIndex].Cells[0].Value = true;
-				MessageBox.Show(e.RowIndex.ToString());
+				//MessageBox.Show(e.RowIndex.ToString());
 				string path = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString();
 				Factura invoice = new Factura();
 			
@@ -257,7 +259,7 @@ namespace WindowsFormsApplication3
          IEnumerable<dynamic> consulta = datos.Where(s => s.EnBase == true && s.SeleccionadoPorUsuario == true);
          //IEnumerable<dynamic> result = consulta.Where(s => s.SeleccionadoPorUsuario == true);
          
-         MessageBox.Show(consulta.Count().ToString());
+         //MessageBox.Show(consulta.Count().ToString());
 
 
          string queryInsert = "";
@@ -273,13 +275,16 @@ namespace WindowsFormsApplication3
          {
 				string commandEgresos = "INSERT INTO ["+ con.Database +"].[dbo].[tblEgresos] ([IdEmpresa],[IdSucursal] ,[Fecha] ,[Factura],[IdProveedor]" +
 			",[Descripcion] ,[ImporteSinDescuento],[Descuento],[Importe],[PorIVA],[IVA],[Total],[FechaDePago],[Estatus],[IdUsuarioReg]" +
-			",[FechaReg],[DeducibleISR],[DeducibleIETU],[EsInversion],[AplicaParaDIOT]) VALUES (@Empresa,0,@Fecha,@Factura,@ClientProveedor,@Descripcion,@ImporteSnDesc,@Descuento,@Importe,16.0,@IVA,@Total,@FechaPago,'PAGADA',@IdUsuario,@FechaReg,1,1,0,1);";
+         ",[FechaReg],[DeducibleISR],[DeducibleIETU],[EsInversion],[AplicaParaDIOT]) SELECT @Empresa,0,@Fecha,@Factura,@ClientProveedor,@Descripcion,@ImporteSnDesc,@Descuento,@Importe,16.0,@IVA,@Total,@FechaPago,'PAGADA',@IdUsuario,@FechaReg,1,1,0,1 WHERE NOT EXISTS(SELECT * FROM [" + con.Database + "].[dbo].[tblEgresos] TBL WHERE TBL.IdEmpresa = @Empresa AND TBL.Factura = @Factura AND TBL.IdProveedor =  @ClientProveedor);";
 
 				string commandIngresos = "INSERT INTO [@database].[dbo].[tblIngresos] ([IdEmpresa],[IdCliente],[IdSucursal] ,[Fecha],[Factura] ,[Importe]," +
 				  "[PorIVA],[IVA],[Total],[FechaDeCobro] ,[Estatus],[IdUsuarioReg],[FechaReg],[AcumulableISR]" +
-				  ",[AcumulableIETU],[PorRetISR],[RetISR],[PorRetIVA],[RetIVA]) VALUES (@Empresa,@ClientProveedor,0,@Fecha,@Factura,@Importe,16.0,@IVA,@Total,@FechaCobro,'COBRADA',@IdUsuario,@FechaReg,1,1,10.0,0.00,66.67,0.00);";
+              ",[AcumulableIETU],[PorRetISR],[RetISR],[PorRetIVA],[RetIVA]) SELECT @Empresa,@ClientProveedor,0,@Fecha,@Factura,@Importe,16.0,@IVA,@Total,@FechaCobro,'COBRADA',@IdUsuario,@FechaReg,1,1,10.0,0.00,66.67,0.00 WHERE NOT EXISTS(SELECT * FROM [" + con.Database + "].[dbo].[tblIngresos] TBL WHERE TBL.IdEmpresa = @Empresa AND TBL.Factura = @Factura AND TBL.IdCliente =  @ClientProveedor) ;";
 
             queryInsert = tipoCaptura == "Egresos" ? commandEgresos : commandIngresos;
+            Dictionary<string,int> captureResults = new Dictionary<string,int>();
+            captureResults.Add("Capturadas",0);
+            captureResults.Add("NoCapturadas",0);
             foreach (dynamic T in consulta)
             {
                using (SqlCommand query = new SqlCommand(queryInsert))
@@ -308,11 +313,20 @@ namespace WindowsFormsApplication3
                      {
                         con.Open();
                         int recordsAffected = query.ExecuteNonQuery();
-                        MessageBox.Show("Capturas " + recordsAffected.ToString());
+                        if (recordsAffected == 1)
+                        {
+                           captureResults["Capturadas"] += 1;
+                        }
+                        else
+                        {
+                           captureResults["NoCapturadas"] += 1;
+                        }
+                        //MessageBox.Show("Capturas " + recordsAffected.ToString());
                      }
                      catch (SqlException sqlex)
                      {
-                        MessageBox.Show(sqlex.Message.ToString());
+                        string bar = sqlex.Message.ToString(); 
+                       // MessageBox.Show(sqlex.Message.ToString());
 
                      }
                      finally
@@ -326,6 +340,9 @@ namespace WindowsFormsApplication3
                   }
                }
             }
+
+            string finalMsg = captureResults["NoCapturadas"] != 0 ? "Capturadas : " + captureResults["Capturadas"].ToString() + " , Repetidas :" + captureResults["NoCapturadas"].ToString() : "Capturadas : " + captureResults["Capturadas"].ToString();
+            MessageBox.Show(finalMsg);
 
          }
       

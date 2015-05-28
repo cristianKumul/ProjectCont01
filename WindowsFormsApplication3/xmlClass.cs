@@ -532,6 +532,16 @@ namespace WindowsFormsApplication3
 						descripcion +=  art.Concepto + "/";
 					}
 				}
+            decimal iva = 00M;
+
+            foreach (Traslado T in factura.Traslados)
+            {
+               if (T.Impuesto == "IVA" || T.Impuesto == "iva")
+               {
+                  iva += decimal.Parse(T.Importe);
+               }
+            }
+            //egreso.IVA = iva;
 				egreso.Descripcion = descripcion;
 				egreso.Clasificacion = "BIENES";
             egreso.Receptor = factura.RFCReceptor;
@@ -547,7 +557,7 @@ namespace WindowsFormsApplication3
 				}
 				try
 				{
-					egreso.IVA = decimal.Parse(factura.IVA);
+               egreso.IVA = iva;
 				}
 				catch 
 				{
@@ -567,6 +577,8 @@ namespace WindowsFormsApplication3
 				//egreso.IVA = decimal.Parse(factura.IVA);
 				//egreso.Total = decimal.Parse(factura.IVA);
 				egreso.Factura = factura.SerieFolio;
+            egreso.Importe = decimal.Parse(factura.SubTotal);
+
 				//egreso.ImporteSinDescuento = 
 
 				return egreso;
