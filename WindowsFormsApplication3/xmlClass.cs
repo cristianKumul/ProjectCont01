@@ -524,6 +524,8 @@ namespace WindowsFormsApplication3
 				egreso.Fecha = sqlDate;
 				egreso.FechaDePago = sqlDate;
 				egreso.FechaReg = sqlDate;
+            egreso.NombreEmisor = factura.NombreEmisor;
+            egreso.NombreReceptor = factura.NombreReceptor;
 				string descripcion = "";
 				foreach (Articulo art in factura.Articulos)
 				{
@@ -599,6 +601,8 @@ namespace WindowsFormsApplication3
 				ingreso.Importe = decimal.Parse(factura.SubTotal);
             ingreso.Emisor = factura.RFCEmisor;
             ingreso.Receptor = factura.RFCReceptor;
+            ingreso.NombreEmisor = factura.NombreEmisor;
+            ingreso.NombreReceptor = factura.NombreReceptor;
             string descripcion = "";
             foreach (Articulo art in factura.Articulos)
             {

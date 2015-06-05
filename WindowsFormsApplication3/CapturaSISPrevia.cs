@@ -163,8 +163,8 @@ namespace WindowsFormsApplication3
 				dr["File"] = datosCaptura[i].Archivo;
             dr["ID"] = i;
             dr["Importe"] = datosCaptura[i].Importe;
-            dr["Emisor"] = datosCaptura[i].Emisor;
-            dr["Receptor"] = datosCaptura[i].Receptor;
+            dr["Emisor"] = tipoCaptura == "Ingresos" ? datosCaptura[i].Emisor : datosCaptura[i].NombreEmisor;
+            dr["Receptor"] = tipoCaptura == "Ingresos" ? datosCaptura[i].NombreReceptor : datosCaptura[i].Receptor;
             dr["Select"] = datosCaptura[i].EnBase ? true : false;
             dr["BaseDatos"] = datosCaptura[i].EnBase ? "OK" : "No encontrado";
 				dt.Rows.Add(dr);

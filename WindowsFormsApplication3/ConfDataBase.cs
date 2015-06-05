@@ -46,7 +46,7 @@ namespace WindowsFormsApplication3
          
          var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
          var connStringSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-         connStringSection.ConnectionStrings["MyConn1"].ConnectionString = "Server=" + serverNametxt.Text + ";Database=" + dataBaseNametxt.Text + ";Trusted_Connection=Yes;";
+         connStringSection.ConnectionStrings["MyConn1"].ConnectionString = "Server=" + serverNametxt.Text + ";Database=" + dataBaseNametxt.Text + ";User Id="+ userConnection.Text+";password="+passwdConnection.Text+";";
          config.Save();
 
          ConfigurationManager.RefreshSection("connectionStrings");
@@ -62,6 +62,11 @@ namespace WindowsFormsApplication3
             MessageBox.Show("Ingrese el servidor y la Base de datos");
          }
          
+      }
+
+      private void label3_Click(object sender, EventArgs e)
+      {
+
       }
    }
 }
